@@ -55,20 +55,24 @@ class _BuildBodyState extends State<_BuildBody> {
             return Center(child: Text(state.error.toString()));
           }
           if (state is WeatherStateLoaded) {
-            return SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: SafeArea(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomAppBar(state: state),
-                    CurrentTemparatureHeader(state: state),
-                    ForecastCard(state: state),
-                    DetailsGrid(state: state),
-                    //const TemparatureGraph(),
-                  ],
+            return Column(
+              children: [
+                SafeArea(child: CustomAppBar(state: state)),
+                Expanded(
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CurrentTemparatureHeader(state: state),
+                        ForecastCard(state: state),
+                        DetailsGrid(state: state),
+                        //const TemparatureGraph(),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              ],
             );
           }
           return Container();
