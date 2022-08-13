@@ -16,7 +16,7 @@ class AirQualityCard extends StatelessWidget {
     return Container(
         margin: const EdgeInsets.all(AppSizes.kDefaultPadding),
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.2,
+        height: MediaQuery.of(context).size.height * 0.17,
         child: NeumorphicCard(
             isClickable: false,
             child: Padding(
@@ -24,6 +24,7 @@ class AirQualityCard extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
@@ -49,7 +50,7 @@ class AirQualityCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            '${state.responseModel.current!.airQuality!.usEpaIndex}',
+                            '${state.responseModel.current!.airQuality!.o3}',
                             style: const TextStyle(
                                 color: AppColors.darkGrey,
                                 fontSize: AppSizes.headline1,
@@ -57,7 +58,7 @@ class AirQualityCard extends StatelessWidget {
                           ),
                           const Text(
                             'Moderate',
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: AppColors.darkGrey,
                                 fontSize: AppSizes.headline6,
                                 fontWeight: FontWeight.w400),
@@ -66,6 +67,35 @@ class AirQualityCard extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: AppSizes.kDefaultPadding,
+                  ),
+                  LinearProgressIndicator(
+                    value: state.responseModel.current!.airQuality!.o3 / 100,
+                    backgroundColor: AppColors.white,
+                  ),
+                  const SizedBox(
+                    height: AppSizes.dimen8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Good',
+                        style: TextStyle(
+                            color: AppColors.darkGrey,
+                            fontSize: AppSizes.bodyText2,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        'Hazardous',
+                        style: TextStyle(
+                            color: AppColors.darkGrey,
+                            fontSize: AppSizes.bodyText2,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  )
                 ],
               ),
             )));
