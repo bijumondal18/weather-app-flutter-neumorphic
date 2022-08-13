@@ -8,6 +8,7 @@ import '../Commons/app_sizes.dart';
 
 class DetailsGrid extends StatelessWidget {
   final WeatherStateLoaded state;
+
   const DetailsGrid({Key? key, required this.state}) : super(key: key);
 
   @override
@@ -235,7 +236,7 @@ class DetailsGrid extends StatelessWidget {
                             height: AppSizes.kDefaultPadding,
                           ),
                           Text(
-                            '${state.responseModel.current!.pressureMb} hPa',
+                            '${state.responseModel.current!.pressureMb} mBar',
                             style: const TextStyle(
                                 color: AppColors.darkGrey,
                                 fontSize: AppSizes.headline5,

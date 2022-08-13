@@ -41,7 +41,9 @@ class _BuildBodyState extends State<_BuildBody> {
     return BlocProvider(
       create: (context) => weatherBloc,
       child: BlocConsumer<WeatherBloc, WeatherState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is WeatherStateError) {}
+        },
         builder: (context, state) {
           if (state is WeatherStateInitial) {
             return const Center(child: CircularProgressIndicator());
@@ -49,11 +51,9 @@ class _BuildBodyState extends State<_BuildBody> {
           if (state is WeatherStateLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-
           if (state is WeatherStateError) {
             return Center(child: Text(state.error.toString()));
           }
-
           if (state is WeatherStateLoaded) {
             return SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
