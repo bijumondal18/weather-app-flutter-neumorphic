@@ -9,4 +9,5 @@ class AppIcons {
   static const String humidity = '${path}humidity.png';
   static const String visibility = '${path}visibility.webp';
   static const String pressure = '${path}pressure.png';
+  static const String airQuality = '${path}air-quality.png';
 }

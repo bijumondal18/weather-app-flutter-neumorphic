@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starter_project/Commons/commons.dart';
+import 'package:starter_project/Components/air_quality_card.dart';
 import 'package:starter_project/Components/details_grid.dart';
 import 'package:starter_project/Components/temparature_graph.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
@@ -67,6 +68,7 @@ class _BuildBodyState extends State<_BuildBody> {
                         CurrentTemparatureHeader(state: state),
                         ForecastCard(state: state),
                         DetailsGrid(state: state),
+                        AirQualityCard(state: state)
                         //const TemparatureGraph(),
                       ],
                     ),
