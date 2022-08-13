@@ -21,7 +21,7 @@ class _NeumorphicCardState extends State<NeumorphicCard> {
   @override
   Widget build(BuildContext context) {
     Offset? distance = _isPressed ? const Offset(4, 4) : const Offset(10, 10);
-    double blur = _isPressed ? 5 : 25;
+    double blur = _isPressed ? 5 : 20;
     return Listener(
       onPointerUp: (_) {
         setState(() {

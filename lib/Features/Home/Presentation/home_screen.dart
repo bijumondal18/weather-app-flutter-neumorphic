@@ -4,6 +4,7 @@ import 'package:starter_project/Commons/commons.dart';
 import 'package:starter_project/Components/air_quality_card.dart';
 import 'package:starter_project/Components/details_grid.dart';
 import 'package:starter_project/Components/temparature_graph.dart';
+import 'package:starter_project/Components/temparature_list.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
 
 import '../../../Components/current_temparature_header.dart';
@@ -58,7 +59,9 @@ class _BuildBodyState extends State<_BuildBody> {
           if (state is WeatherStateLoaded) {
             return Column(
               children: [
-                SafeArea(child: CustomAppBar(state: state)),
+                SafeArea(
+                    bottom: false,
+                    child: CustomAppBar(state: state)),
                 Expanded(
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
@@ -67,9 +70,10 @@ class _BuildBodyState extends State<_BuildBody> {
                       children: [
                         CurrentTemparatureHeader(state: state),
                         ForecastCard(state: state),
+                        TemparatureList(state: state),
                         DetailsGrid(state: state),
-                        AirQualityCard(state: state)
-                        //const TemparatureGraph(),
+                        AirQualityCard(state: state),
+                        const SizedBox(height: AppSizes.dimen30,)
                       ],
                     ),
                   ),

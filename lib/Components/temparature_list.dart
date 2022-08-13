@@ -1,42 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
+import 'package:starter_project/Utils/app_utils.dart';
 
+import '../Commons/app_colors.dart';
 import '../Commons/app_sizes.dart';
 import '../Widgets/neumorphic_card.dart';
 
 class TemparatureList extends StatelessWidget {
-  const TemparatureList({Key? key}) : super(key: key);
+  final WeatherStateLoaded state;
+
+  const TemparatureList({Key? key, required this.state}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
+    return SizedBox(
+      height: 150,
       width: MediaQuery.of(context).size.width,
       child: ListView.builder(
           shrinkWrap: true,
-          padding:
-          const EdgeInsets.only(left: AppSizes.kDefaultPadding),
-          itemCount: 10,
+          padding: const EdgeInsets.only(left: AppSizes.kDefaultPadding),
+          itemCount: state.responseModel.forecast!.forecastday![0].hour!.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return Container(
-              width: 130,
-              height: 160,
-              margin: const EdgeInsets.only(
-                  right: AppSizes.kDefaultPadding),
+            return Padding(
+              padding: const EdgeInsets.only(
+                  right: AppSizes.kDefaultPadding,
+                  top: AppSizes.kDefaultPadding,
+                  bottom: AppSizes.kDefaultPadding),
               child: NeumorphicCard(
                   isClickable: true,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text('Today'),
-                      Text('12'),
-                      Row(
-                        children: [
-                          Text('Clear'),
-                        ],
-                      ),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppSizes.kDefaultPadding),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          AppUtils.getTimeFromDateString(
+                              '${state.responseModel.forecast!.forecastday![0].hour![index].time}'),
+                          style: const TextStyle(
+                              color: AppColors.darkGrey,
+                              fontSize: AppSizes.bodyText2,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Image(
+                          image: NetworkImage(
+                              'http:${state.responseModel.forecast!.forecastday![0].hour![index].condition!.icon}'),
+                          width: 40,
+                          height: 40,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              '${state.responseModel.forecast!.forecastday![0].hour![index].tempC}°C',
+                              style: const TextStyle(
+                                  color: AppColors.darkGrey,
+                                  fontSize: AppSizes.bodyText1,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   )),
             );
           }),

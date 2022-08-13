@@ -37,7 +37,7 @@ class CustomAppBar extends StatelessWidget {
               style: const TextStyle(
                   color: AppColors.darkGrey,
                   fontSize: AppSizes.headline6,
-                  fontWeight: FontWeight.w400)),
+                  fontWeight: FontWeight.w500)),
           InkWell(
             onTap: () {},
             child: const NeumorphicCard(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:starter_project/Utils/app_utils.dart';
-
+import 'dart:math';
 import '../Commons/app_colors.dart';
 import '../Commons/app_icons.dart';
 import '../Commons/app_sizes.dart';
@@ -14,6 +14,8 @@ class AirQualityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var airIndex =
+        state.responseModel.current!.airQuality!.o3.toStringAsFixed(2);
     return Container(
         margin: const EdgeInsets.all(AppSizes.kDefaultPadding),
         width: MediaQuery.of(context).size.width,
@@ -51,7 +53,7 @@ class AirQualityCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            '${state.responseModel.current!.airQuality!.o3}',
+                            airIndex,
                             style: const TextStyle(
                                 color: AppColors.darkGrey,
                                 fontSize: AppSizes.headline1,

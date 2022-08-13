@@ -3,9 +3,16 @@ import 'package:intl/intl.dart';
 class AppUtils {
   const AppUtils();
 
-  static String getDayByDate(String givenDate) {
+  static String getTimeFromDateString(String givenDate) {
     var inputDate = DateTime.parse(givenDate);
-    var outputFormat = DateFormat("yyyy-mm-dd");
+    var outputFormat = DateFormat("hh:mm a");
+    var outputDate = outputFormat.format(inputDate);
+    return outputDate;
+  }
+
+  static String getDateFromDateString(String givenDate) {
+    var inputDate = DateTime.parse(givenDate);
+    var outputFormat = DateFormat("dd-MMM-yyyy");
     var outputDate = outputFormat.format(inputDate);
     return outputDate;
   }
