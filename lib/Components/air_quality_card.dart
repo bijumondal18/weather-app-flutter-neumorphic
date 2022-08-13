@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project/Utils/app_utils.dart';
 
 import '../Commons/app_colors.dart';
 import '../Commons/app_icons.dart';
@@ -56,9 +57,10 @@ class AirQualityCard extends StatelessWidget {
                                 fontSize: AppSizes.headline1,
                                 fontWeight: FontWeight.w500),
                           ),
-                          const Text(
-                            'Moderate',
-                            style: TextStyle(
+                          Text(
+                            AppUtils.getAirQualityStatus(
+                                state.responseModel.current!.airQuality!.o3),
+                            style: const TextStyle(
                                 color: AppColors.darkGrey,
                                 fontSize: AppSizes.headline6,
                                 fontWeight: FontWeight.w400),
@@ -70,9 +72,18 @@ class AirQualityCard extends StatelessWidget {
                   const SizedBox(
                     height: AppSizes.kDefaultPadding,
                   ),
-                  LinearProgressIndicator(
-                    value: state.responseModel.current!.airQuality!.o3 / 100,
-                    backgroundColor: AppColors.white,
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 5,
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(AppSizes.cardCornerRadius),
+                        gradient: const LinearGradient(colors: [
+                          AppColors.green,
+                          AppColors.yellow,
+                          AppColors.orange,
+                          AppColors.red
+                        ])),
                   ),
                   const SizedBox(
                     height: AppSizes.dimen8,
