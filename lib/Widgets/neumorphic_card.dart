@@ -20,8 +20,8 @@ class _NeumorphicCardState extends State<NeumorphicCard> {
 
   @override
   Widget build(BuildContext context) {
-    Offset? distance = _isPressed ? const Offset(4, 4) : const Offset(10, 10);
-    double blur = _isPressed ? 5 : 20;
+    Offset? distance = _isPressed ? const Offset(2, 2) : const Offset(8, 8);
+    double blur = _isPressed ? 5 : 15;
     return Listener(
       onPointerUp: (_) {
         setState(() {
@@ -50,7 +50,7 @@ class _NeumorphicCardState extends State<NeumorphicCard> {
                         inset: _isPressed),
                     //top shadow
                     BoxShadow(
-                        color: Colors.white,
+                        color: AppColors.white,
                         offset: -distance,
                         blurRadius: blur,
                         spreadRadius: 1,
