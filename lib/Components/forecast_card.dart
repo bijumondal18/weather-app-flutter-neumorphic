@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:starter_project/Features/Forecast/Presentation/forecast_screen.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
 
 import '../Commons/app_colors.dart';
@@ -26,7 +27,7 @@ class ForecastCard extends StatelessWidget {
                 padding: const EdgeInsets.all(AppSizes.dimen12),
                 child: ListView.builder(
                     itemCount:
-                        state.responseModel.forecast!.forecastday!.length >= 3
+                        state.responseModel.forecast!.forecastday!.length > 3
                             ? 3
                             : state.responseModel.forecast!.forecastday!.length,
                     shrinkWrap: true,
@@ -63,9 +64,10 @@ class ForecastCard extends StatelessWidget {
             ),
             TextButton(
                 onPressed: () {
-                  if (kDebugMode) {
-                    print('show 5 day forecast screen');
-                  }
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ForecastScreen()));
                 },
                 child: const Text(
                   '5-day forecast',

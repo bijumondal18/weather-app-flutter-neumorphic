@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
 
@@ -17,7 +16,7 @@ class CustomAppBar extends StatelessWidget {
       margin: const EdgeInsets.all(AppSizes.kDefaultPadding),
       height: 48,
       width: MediaQuery.of(context).size.width,
-      color: Colors.grey[300],
+      color: AppColors.backgroundColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -28,7 +27,7 @@ class CustomAppBar extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(AppSizes.dimen12),
                 child: Icon(
-                  Icons.menu,
+                  Icons.add,
                   size: 24,
                 ),
               ),
