@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
+import 'package:starter_project/Features/ManageCities/Presentation/manage_city_screen.dart';
 
 import '../Commons/app_colors.dart';
 import '../Commons/app_sizes.dart';
@@ -21,7 +22,12 @@ class CustomAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ManageCitiesScreen()));
+            },
             child: const NeumorphicCard(
               isClickable: true,
               child: Padding(

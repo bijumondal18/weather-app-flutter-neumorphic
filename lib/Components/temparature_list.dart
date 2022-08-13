@@ -14,7 +14,7 @@ class TemparatureList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
+      height: 140,
       width: MediaQuery.of(context).size.width,
       child: ListView.builder(
           shrinkWrap: true,

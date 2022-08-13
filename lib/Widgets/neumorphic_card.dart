@@ -59,18 +59,18 @@ class _NeumorphicCardState extends State<NeumorphicCard> {
                 : [
                     //bottom shadow
                     BoxShadow(
-                      color: Colors.grey.shade500,
-                      offset: distance,
-                      blurRadius: blur,
-                      spreadRadius: 1,
-                    ),
+                        color: Colors.grey.shade500,
+                        offset: distance,
+                        blurRadius: blur,
+                        spreadRadius: 1,
+                        inset: false),
                     //top shadow
                     BoxShadow(
-                      color: Colors.white,
-                      offset: -distance,
-                      blurRadius: blur,
-                      spreadRadius: 1,
-                    ),
+                        color: Colors.white,
+                        offset: -distance,
+                        blurRadius: blur,
+                        spreadRadius: 1,
+                        inset: false),
                   ]),
         child: widget.child,
       ),
