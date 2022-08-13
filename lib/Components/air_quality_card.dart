@@ -16,7 +16,7 @@ class AirQualityCard extends StatelessWidget {
     return Container(
         margin: const EdgeInsets.all(AppSizes.kDefaultPadding),
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.25,
+        height: MediaQuery.of(context).size.height * 0.2,
         child: NeumorphicCard(
             isClickable: false,
             child: Padding(
@@ -24,21 +24,45 @@ class AirQualityCard extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Image(
-                        image: AssetImage(AppIcons.airQuality),
-                        width: 18,
-                        height: 18,
+                      Row(
+                        children: [
+                          const Image(
+                            image: AssetImage(AppIcons.airQuality),
+                            width: 18,
+                            height: 18,
+                          ),
+                          const SizedBox(
+                            width: AppSizes.kDefaultPadding,
+                          ),
+                          Text(
+                            'Air Quality Index'.toUpperCase(),
+                            style: const TextStyle(
+                                color: AppColors.darkGrey,
+                                fontSize: AppSizes.bodyText2,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
                       ),
-                      const SizedBox(
-                        width: AppSizes.kDefaultPadding,
-                      ),
-                      Text(
-                        'Air Quality Index'.toUpperCase(),
-                        style: const TextStyle(
-                            color: AppColors.darkGrey,
-                            fontSize: AppSizes.bodyText2,
-                            fontWeight: FontWeight.w400),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            '${state.responseModel.current!.airQuality!.usEpaIndex}',
+                            style: const TextStyle(
+                                color: AppColors.darkGrey,
+                                fontSize: AppSizes.headline1,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const Text(
+                            'Moderate',
+                            style: const TextStyle(
+                                color: AppColors.darkGrey,
+                                fontSize: AppSizes.headline6,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
                       ),
                     ],
                   ),

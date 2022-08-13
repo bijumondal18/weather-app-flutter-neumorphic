@@ -60,7 +60,7 @@ class DetailsGrid extends StatelessWidget {
                             height: AppSizes.kDefaultPadding,
                           ),
                           Text(
-                            '${state.responseModel.current!.airQuality!.gbDefraIndex}',
+                            '${state.responseModel.current!.uv}',
                             style: const TextStyle(
                                 color: AppColors.darkGrey,
                                 fontSize: AppSizes.headline5,
