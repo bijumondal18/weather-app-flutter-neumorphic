@@ -39,7 +39,9 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
           ),
-          Text(state.responseModel.location!.name.toString(),
+          Text(
+              '${state.responseModel.location!.name}\n${state.responseModel.location!.region} ${state.responseModel.location!.country}',
+              textAlign: TextAlign.center,
               style: const TextStyle(
                   color: AppColors.darkGrey,
                   fontSize: AppSizes.headline6,

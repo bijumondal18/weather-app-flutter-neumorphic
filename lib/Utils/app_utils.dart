@@ -12,9 +12,24 @@ class AppUtils {
 
   static String getDateFromDateString(String givenDate) {
     var inputDate = DateTime.parse(givenDate);
-    var outputFormat = DateFormat("dd-MMM-yyyy");
+    var outputFormat = DateFormat("dd MMM, yyyy");
     var outputDate = outputFormat.format(inputDate);
     return outputDate;
+  }
+
+  static String getWeekdayFromDate(int index, String givenDate) {
+    String weekday = '';
+    if (index == 0) {
+      weekday = 'Today';
+    }
+    if (index == 1) {
+      weekday = 'Tomorrow';
+    }else{
+      var inputDate = DateTime.parse(givenDate);
+      var outputFormat = DateFormat("EEEE");
+      weekday = outputFormat.format(inputDate);
+    }
+    return weekday;
   }
 
   static String getAirQualityStatus(double value) {

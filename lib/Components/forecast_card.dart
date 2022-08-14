@@ -65,14 +65,14 @@ class ForecastCard extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ForecastScreen()));
+                          builder: (context) => ForecastScreen(state: state)));
                 },
-                child: const Text(
-                  '5-day forecast',
-                  style: TextStyle(
-                      color: AppColors.darkGrey,
+                child: Text(
+                  'Next ${state.responseModel.forecast!.forecastday!.length}-days forecast',
+                  style: const TextStyle(
+                      color: AppColors.blue,
                       fontSize: AppSizes.bodyText2,
-                      fontWeight: FontWeight.w400),
+                      fontWeight: FontWeight.w500),
                 ))
           ],
         ),
