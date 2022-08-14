@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:starter_project/Commons/commons.dart';
 import 'package:starter_project/Components/air_quality_card.dart';
 import 'package:starter_project/Components/details_grid.dart';
@@ -35,6 +36,7 @@ class _BuildBodyState extends State<_BuildBody> {
   @override
   void initState() {
     super.initState();
+    FlutterNativeSplash.remove();
     weatherBloc.add(GetWeatherDataEvent());
   }
 
@@ -48,10 +50,12 @@ class _BuildBodyState extends State<_BuildBody> {
         },
         builder: (context, state) {
           if (state is WeatherStateInitial) {
-            return const Center(child: CircularProgressIndicator());
+            return Container();
+             // const Center(child: CircularProgressIndicator());
           }
           if (state is WeatherStateLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return Container();
+              //const Center(child: CircularProgressIndicator());
           }
           if (state is WeatherStateError) {
             return Center(child: Text(state.error.toString()));
