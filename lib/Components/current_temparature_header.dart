@@ -22,12 +22,23 @@ class CurrentTemparatureHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: Text(
-                    '${state.responseModel.current!.tempC}° ${state.responseModel.current!.condition!.text}',
-                    style: const TextStyle(
-                        color: AppColors.darkGrey,
-                        fontSize: AppSizes.headline3,
-                        fontWeight: FontWeight.w500)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                   const Text(
+                        'Today',
+                        style:  TextStyle(
+                            color: AppColors.darkGrey,
+                            fontSize: AppSizes.headline3,
+                            fontWeight: FontWeight.w500)),
+                    Text(
+                        '${state.responseModel.current!.tempC}° ${state.responseModel.current!.condition!.text}',
+                        style: const TextStyle(
+                            color: AppColors.darkGrey,
+                            fontSize: AppSizes.headline3,
+                            fontWeight: FontWeight.w500)),
+                  ],
+                ),
               ),
               Image(
                 image: NetworkImage(

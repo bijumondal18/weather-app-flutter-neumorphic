@@ -26,7 +26,10 @@ class ForecastScreen extends StatelessWidget {
           itemCount: state.responseModel.forecast!.forecastday!.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
+              padding: const EdgeInsets.only(
+                  left: AppSizes.kDefaultPadding,
+                  right: AppSizes.kDefaultPadding,
+                  top: AppSizes.kDefaultPadding),
               child: NeumorphicCard(
                 isClickable: false,
                 child: Padding(
