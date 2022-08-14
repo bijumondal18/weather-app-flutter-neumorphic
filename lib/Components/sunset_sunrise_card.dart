@@ -43,7 +43,19 @@ class SunsetSunriseCard extends StatelessWidget {
                 ],
               ),
             ),
-            const Expanded(child: CurvedContainer()),
+            //const Expanded(child: CurvedContainer()),
+            Expanded(
+                child: Container(
+              height: 2,
+              decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(AppSizes.cardCornerRadius),
+                  gradient: const LinearGradient(colors: [
+                    AppColors.yellow,
+                    AppColors.orange,
+                    AppColors.red,
+                  ])),
+            )),
             Padding(
               padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
               child: Column(

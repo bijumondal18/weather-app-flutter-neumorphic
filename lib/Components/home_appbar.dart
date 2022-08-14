@@ -26,7 +26,9 @@ class HomeAppBar extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ManageCitiesScreen(state: state,)));
+                      builder: (context) => ManageCitiesScreen(
+                            state: state,
+                          )));
             },
             child: const NeumorphicCard(
               isClickable: true,
@@ -39,13 +41,25 @@ class HomeAppBar extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-              '${state.responseModel.location!.name}\n${state.responseModel.location!.region}, ${state.responseModel.location!.country}',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  color: AppColors.darkGrey,
-                  fontSize: AppSizes.headline6,
-                  fontWeight: FontWeight.w500)),
+          Column(
+            children: [
+              Text('${state.responseModel.location!.name}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      color: AppColors.darkGrey,
+                      fontSize: AppSizes.headline6,
+                      fontWeight: FontWeight.w500)),
+              Text(
+                  '${state.responseModel.location!.region}, ${state.responseModel.location!.country}',
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      color: AppColors.darkGrey,
+                      fontSize: AppSizes.bodyText2,
+                      fontWeight: FontWeight.w400)),
+            ],
+          ),
           InkWell(
             onTap: () {},
             child: const NeumorphicCard(
