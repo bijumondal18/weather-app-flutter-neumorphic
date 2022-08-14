@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:starter_project/Features/Forecast/Presentation/forecast_screen.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
+import 'package:starter_project/Utils/app_utils.dart';
 
 import '../Commons/app_colors.dart';
 import '../Commons/app_sizes.dart';
@@ -42,7 +43,9 @@ class ForecastCard extends StatelessWidget {
                         height: 28,
                       ),
                       title: Text(
-                        '${state.responseModel.forecast!.forecastday![index].day!.condition!.text}',
+                        '${AppUtils.getWeekdayFromDate(index, state.responseModel.forecast!.forecastday![index].date.toString())} \u2022 ${state.responseModel.forecast!.forecastday![index].day!.condition!.text}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                             color: AppColors.darkGrey,
                             fontSize: AppSizes.bodyText1,

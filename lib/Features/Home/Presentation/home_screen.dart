@@ -8,7 +8,7 @@ import 'package:starter_project/Components/temparature_list.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
 
 import '../../../Components/current_temparature_header.dart';
-import '../../../Components/custom_app_bar.dart';
+import '../../../Components/home_appbar.dart';
 import '../../../Components/forecast_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -61,7 +61,7 @@ class _BuildBodyState extends State<_BuildBody> {
               children: [
                 SafeArea(
                     bottom: false,
-                    child: CustomAppBar(state: state)),
+                    child: HomeAppBar(state: state)),
                 Expanded(
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),

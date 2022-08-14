@@ -25,6 +25,8 @@ class AppColors {
   static const facebook = Color(0xFF3b5998);
   static const twitter = Color(0xFF00ACEE);
   static const instagram = Color(0xFF833AB4);
+  static const purple = Color(0xFF833AB4);
+  static const pink = Color(0xFFCC6767);
   static const youtube = Color(0xFFc4302b);
   static const statusBackground = Color(0xffd9fad4);
   static const successSnackBarBackground = Color(0xff6c9d67);

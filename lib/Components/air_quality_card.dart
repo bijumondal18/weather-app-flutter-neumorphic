@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project/Features/AirQuality/Presentation/air_quality_screen.dart';
 import 'package:starter_project/Utils/app_utils.dart';
 import 'dart:math';
 import '../Commons/app_colors.dart';
@@ -119,23 +120,11 @@ class AirQualityCard extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return Container(
-                              color: AppColors.transparent,
-                              child: Container(
-                                padding: const EdgeInsets.all(
-                                    AppSizes.kDefaultPadding),
-                                decoration: BoxDecoration(
-                                    color: AppColors.backgroundColor,
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(16),
-                                        topRight: Radius.circular(16))),
-                                child: _AirQualityData(state: state),
-                              ),
-                            );
-                          });
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  AirQualityScreen(state: state)));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

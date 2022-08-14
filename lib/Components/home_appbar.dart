@@ -6,10 +6,10 @@ import '../Commons/app_colors.dart';
 import '../Commons/app_sizes.dart';
 import '../Widgets/neumorphic_card.dart';
 
-class CustomAppBar extends StatelessWidget {
+class HomeAppBar extends StatelessWidget {
   final WeatherStateLoaded state;
 
-  const CustomAppBar({Key? key, required this.state}) : super(key: key);
+  const HomeAppBar({Key? key, required this.state}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
