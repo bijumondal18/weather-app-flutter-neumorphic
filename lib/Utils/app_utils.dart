@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:starter_project/Commons/commons.dart';
 
@@ -71,5 +72,37 @@ class AppUtils {
       statusColor = AppColors.purple;
     }
     return statusColor;
+  }
+
+  static Future<String> getCurrentLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    Position position;
+    late String latlng;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    //print('-------position : $position');
+    latlng = '${position.latitude},${position.longitude}';
+    //print('-------latlong : $latlng');
+    return latlng;
   }
 }

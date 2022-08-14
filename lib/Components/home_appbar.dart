@@ -26,7 +26,7 @@ class HomeAppBar extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ManageCitiesScreen()));
+                      builder: (context) => ManageCitiesScreen(state: state,)));
             },
             child: const NeumorphicCard(
               isClickable: true,

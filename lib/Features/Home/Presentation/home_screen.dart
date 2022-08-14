@@ -7,6 +7,8 @@ import 'package:starter_project/Components/details_grid.dart';
 import 'package:starter_project/Components/temparature_graph.dart';
 import 'package:starter_project/Components/temparature_list.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:starter_project/Utils/app_utils.dart';
 
 import '../../../Components/current_temparature_header.dart';
 import '../../../Components/home_appbar.dart';
@@ -36,8 +38,9 @@ class _BuildBodyState extends State<_BuildBody> {
   @override
   void initState() {
     super.initState();
-    FlutterNativeSplash.remove();
+    //FlutterNativeSplash.remove();
     weatherBloc.add(GetWeatherDataEvent());
+    AppUtils.getCurrentLocation();
   }
 
   @override
@@ -50,12 +53,10 @@ class _BuildBodyState extends State<_BuildBody> {
         },
         builder: (context, state) {
           if (state is WeatherStateInitial) {
-            return Container();
-             // const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (state is WeatherStateLoading) {
-            return Container();
-              //const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (state is WeatherStateError) {
             return Center(child: Text(state.error.toString()));
@@ -63,9 +64,7 @@ class _BuildBodyState extends State<_BuildBody> {
           if (state is WeatherStateLoaded) {
             return Column(
               children: [
-                SafeArea(
-                    bottom: false,
-                    child: HomeAppBar(state: state)),
+                SafeArea(bottom: false, child: HomeAppBar(state: state)),
                 Expanded(
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
@@ -77,7 +76,9 @@ class _BuildBodyState extends State<_BuildBody> {
                         TemparatureList(state: state),
                         DetailsGrid(state: state),
                         AirQualityCard(state: state),
-                        const SizedBox(height: AppSizes.dimen30,)
+                        const SizedBox(
+                          height: AppSizes.dimen30,
+                        )
                       ],
                     ),
                   ),

@@ -11,4 +11,5 @@ class AppIcons {
   static const String pressure = '${path}pressure.png';
   static const String airQuality = '${path}air-quality.png';
   static const String forecast = '${path}forecast.png';
+  static const String city = '${path}city.png';
 }

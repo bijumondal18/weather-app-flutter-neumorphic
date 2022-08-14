@@ -3,16 +3,22 @@ import 'package:flutter/material.dart' hide BoxShadow, BoxDecoration;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 
 import 'package:starter_project/Commons/commons.dart';
+import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
+import 'package:starter_project/Widgets/custom_appbar.dart';
 import 'package:starter_project/Widgets/neumorphic_card.dart';
 
 class ManageCitiesScreen extends StatelessWidget {
-  const ManageCitiesScreen({Key? key}) : super(key: key);
+  final WeatherStateLoaded state;
+
+  const ManageCitiesScreen({Key? key, required this.state}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Manage Cities'),
+      appBar: CustomAppBar(
+        state: state,
+        title: 'Manage Cities',
+        icon: AppIcons.city
       ),
       body: const _BuildBody(),
     );

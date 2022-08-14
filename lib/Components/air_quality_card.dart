@@ -19,7 +19,7 @@ class AirQualityCard extends StatelessWidget {
     return Container(
         margin: const EdgeInsets.all(AppSizes.kDefaultPadding),
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.20,
+        height: MediaQuery.of(context).size.height * 0.22,
         child: NeumorphicCard(
             isClickable: true,
             child: Padding(
@@ -27,99 +27,102 @@ class AirQualityCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              const Image(
-                                image: AssetImage(AppIcons.airQuality),
-                                width: 18,
-                                height: 18,
-                              ),
-                              const SizedBox(
-                                width: AppSizes.kDefaultPadding,
-                              ),
-                              Text(
-                                'Air Quality Index'.toUpperCase(),
-                                style: const TextStyle(
-                                    color: AppColors.darkGrey,
-                                    fontSize: AppSizes.bodyText2,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                airIndex,
-                                style: const TextStyle(
-                                    color: AppColors.darkGrey,
-                                    fontSize: AppSizes.headline1,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              Text(
-                                AppUtils.getAirQualityStatus(state
-                                    .responseModel.current!.airQuality!.o3),
-                                style:  TextStyle(
-                                    color: AppUtils.getAirQualityStatusColor(state
-                                        .responseModel.current!.airQuality!.o3),
-                                    fontSize: AppSizes.headline6,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: AppSizes.kDefaultPadding,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 5,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                AppSizes.cardCornerRadius),
-                            gradient: const LinearGradient(colors: [
-                              AppColors.green,
-                              AppColors.yellow,
-                              AppColors.orange,
-                              AppColors.red,
-                              AppColors.pink,
-                              AppColors.purple
-                            ])),
-                      ),
-                      const SizedBox(
-                        height: AppSizes.dimen8,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            'Excellent',
-                            style: TextStyle(
-                                color: AppColors.darkGrey,
-                                fontSize: AppSizes.bodyText2,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          Text(
-                            'Hazardous',
-                            style: TextStyle(
-                                color: AppColors.darkGrey,
-                                fontSize: AppSizes.bodyText2,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                const Image(
+                                  image: AssetImage(AppIcons.airQuality),
+                                  width: 18,
+                                  height: 18,
+                                ),
+                                const SizedBox(
+                                  width: AppSizes.kDefaultPadding,
+                                ),
+                                Text(
+                                  'Air Quality Index'.toUpperCase(),
+                                  style: const TextStyle(
+                                      color: AppColors.darkGrey,
+                                      fontSize: AppSizes.bodyText2,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  airIndex,
+                                  style: const TextStyle(
+                                      color: AppColors.darkGrey,
+                                      fontSize: AppSizes.headline1,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  AppUtils.getAirQualityStatus(state
+                                      .responseModel.current!.airQuality!.o3),
+                                  style:  TextStyle(
+                                      color: AppUtils.getAirQualityStatusColor(state
+                                          .responseModel.current!.airQuality!.o3),
+                                      fontSize: AppSizes.headline6,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: AppSizes.kDefaultPadding,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 5,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                  AppSizes.cardCornerRadius),
+                              gradient: const LinearGradient(colors: [
+                                AppColors.green,
+                                AppColors.yellow,
+                                AppColors.orange,
+                                AppColors.red,
+                                AppColors.pink,
+                                AppColors.purple
+                              ])),
+                        ),
+                        const SizedBox(
+                          height: AppSizes.dimen8,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              'Excellent',
+                              style: TextStyle(
+                                  color: AppColors.darkGrey,
+                                  fontSize: AppSizes.bodyText2,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            Text(
+                              'Hazardous',
+                              style: TextStyle(
+                                  color: AppColors.darkGrey,
+                                  fontSize: AppSizes.bodyText2,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                   const Divider(
-                    height: 1,
+                    height: 0,
                   ),
+                   const SizedBox(height: 8),
                   InkWell(
                     onTap: () {
                       Navigator.push(
@@ -132,7 +135,7 @@ class AirQualityCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Text(
-                          'Full air quality forecast',
+                          'Full Air Quality Forecast',
                           style: TextStyle(
                               color: AppColors.blue,
                               fontSize: AppSizes.bodyText2,
