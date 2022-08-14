@@ -39,8 +39,10 @@ class _NeumorphicCardState extends State<NeumorphicCard> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSizes.cardCornerRadius),
             color: AppColors.backgroundColor,
-            boxShadow: widget.isClickable!
-                ? [
+            boxShadow:
+            //widget.isClickable!
+              //  ?
+            [
                     //bottom shadow
                     BoxShadow(
                         color: Colors.grey.shade400,
@@ -56,22 +58,23 @@ class _NeumorphicCardState extends State<NeumorphicCard> {
                         spreadRadius: 1,
                         inset: _isPressed),
                   ]
-                : [
-                    //bottom shadow
-                    BoxShadow(
-                        color: Colors.grey.shade500,
-                        offset: distance,
-                        blurRadius: blur,
-                        spreadRadius: 1,
-                        inset: false),
-                    //top shadow
-                    BoxShadow(
-                        color: Colors.white,
-                        offset: -distance,
-                        blurRadius: blur,
-                        spreadRadius: 1,
-                        inset: false),
-                  ]),
+                // : [
+                //     //bottom shadow
+                //     BoxShadow(
+                //         color: Colors.grey.shade500,
+                //         offset: distance,
+                //         blurRadius: blur,
+                //         spreadRadius: 1,
+                //         inset: false),
+                //     //top shadow
+                //     BoxShadow(
+                //         color: Colors.white,
+                //         offset: -distance,
+                //         blurRadius: blur,
+                //         spreadRadius: 1,
+                //         inset: false),
+                //   ]
+        ),
         child: widget.child,
       ),
     );

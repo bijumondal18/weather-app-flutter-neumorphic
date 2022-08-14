@@ -35,9 +35,11 @@ class _AirQualityScreenState extends State<AirQualityScreen>
     tabController.dispose();
   }
 
+  int selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
         appBar: CustomAppBar(
           state: widget.state,
           title: 'Air Quality Index',
@@ -45,18 +47,23 @@ class _AirQualityScreenState extends State<AirQualityScreen>
         ),
         body: Column(
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              //height: 56,
-              child: TabBar(controller: tabController, tabs: const [
-                Tab(
-                  text: 'Current Pollutants',
-                ),
-                Tab(
-                  text: 'Air Quality Scale',
-                ),
-              ]),
-            ),
+            TabBar(
+                indicatorSize: TabBarIndicatorSize.tab,
+                labelColor: AppColors.darkGrey,
+                labelStyle: const TextStyle(
+                    fontSize: AppSizes.bodyText1, fontWeight: FontWeight.w700),
+                unselectedLabelStyle: const TextStyle(
+                    fontSize: AppSizes.bodyText1, fontWeight: FontWeight.w400),
+                indicatorColor: AppColors.transparent,
+                controller: tabController,
+                tabs: const [
+                  Tab(
+                    text: 'Current Pollutants',
+                  ),
+                  Tab(
+                    text: 'Air Quality Scale',
+                  ),
+                ]),
             Expanded(
               child: TabBarView(
                 controller: tabController,
@@ -67,34 +74,6 @@ class _AirQualityScreenState extends State<AirQualityScreen>
               ),
             )
           ],
-        )
-        // ListView(
-        //     shrinkWrap: true,
-        //     padding:
-        //         const EdgeInsets.symmetric(horizontal: AppSizes.kDefaultPadding),
-        //     physics: const BouncingScrollPhysics(),
-        //     children: [
-        //       const SizedBox(height: AppSizes.dimen8),
-        //       Text(
-        //         'Current Pollutants'.toUpperCase(),
-        //         style: const TextStyle(
-        //             color: AppColors.darkGrey,
-        //             fontSize: AppSizes.bodyText1,
-        //             fontWeight: FontWeight.w500),
-        //       ),
-
-        //       const SizedBox(height: AppSizes.kDefaultPadding),
-        //       Text(
-        //         'Air Quality Scale'.toUpperCase(),
-        //         style: const TextStyle(
-        //             color: AppColors.darkGrey,
-        //             fontSize: AppSizes.bodyText1,
-        //             fontWeight: FontWeight.w500),
-        //       ),
-        //       const SizedBox(height: AppSizes.kDefaultPadding),
-        //       Expanded(
-        //       ),
-        //     ]),
-        );
+        ));
   }
 }
