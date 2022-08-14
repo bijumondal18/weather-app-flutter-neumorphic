@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:starter_project/Commons/commons.dart';
 import 'package:starter_project/Commons/constants.dart';
 import 'package:starter_project/Components/air_quality_card.dart';
 import 'package:starter_project/Components/details_grid.dart';
-import 'package:starter_project/Components/temparature_graph.dart';
 import 'package:starter_project/Components/temparature_list.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:starter_project/Utils/app_utils.dart';
 
 import '../../../Components/current_temparature_header.dart';
 import '../../../Components/home_appbar.dart';
 import '../../../Components/forecast_card.dart';
+import '../../../Components/sunset_sunrise_card.dart';
+import '../../../Utils/app_utils.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -40,6 +38,7 @@ class _BuildBodyState extends State<_BuildBody> {
   void initState() {
     super.initState();
     //FlutterNativeSplash.remove();
+    AppUtils.registerPlatformInstance();
     weatherBloc.add(GetWeatherDataEvent());
   }
 
@@ -75,6 +74,7 @@ class _BuildBodyState extends State<_BuildBody> {
                         ForecastCard(state: state),
                         TemparatureList(state: state),
                         DetailsGrid(state: state),
+                        SunsetSunriseCard(state : state),
                         AirQualityCard(state: state),
                         const SizedBox(
                           height: AppSizes.dimen30,

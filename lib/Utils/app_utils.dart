@@ -1,9 +1,12 @@
 import 'dart:developer';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:starter_project/Commons/commons.dart';
+import 'package:geolocator_apple/geolocator_apple.dart';
+import 'package:geolocator_android/geolocator_android.dart';
 
 class AppUtils {
   const AppUtils();
@@ -37,42 +40,44 @@ class AppUtils {
     return weekday;
   }
 
-  static String getAirQualityStatus(double value) {
+  static String getAirQualityStatus(dynamic value) {
     var status = '';
 
-    if (value <= 19.0) {
-      status = 'Excellent';
-    } else if (value > 20.0 && value < 49.0) {
-      status = 'Fair';
-    } else if (value > 50.0 && value <= 99.0) {
-      status = 'Poor';
-    } else if (value > 100.0 && value <= 149.0) {
-      status = 'Unhealthy';
-    } else if (value > 150.0 && value <= 249.0) {
-      status = 'Very Unhealthy';
-    } else {
-      status = 'Dangerous ';
+    if (value <= 35) {
+      status = 'Low';
+    } else if (value > 35 && value < 53) {
+      status = 'Moderate';
+    } else if (value > 53 && value <= 70) {
+      status = 'High';
+    }  else {
+      status = 'Very High';
     }
     return status;
   }
 
-  static Color getAirQualityStatusColor(double value) {
+  static Color getAirQualityStatusColor(dynamic value) {
     late Color statusColor;
 
-    if (value <= 19.0) {
+    if (value <= 35) {
       statusColor = AppColors.green;
-    } else if (value > 20.0 && value < 49.0) {
+    } else if (value > 35 && value < 53) {
       statusColor = AppColors.yellow;
-    } else if (value > 50.0 && value <= 99.0) {
+    } else if (value > 53 && value <= 70) {
       statusColor = AppColors.orange;
-    } else if (value > 100.0 && value <= 149.0) {
+    }  else {
       statusColor = AppColors.red;
-    } else if (value > 150.0 && value <= 249.0) {
-      statusColor = AppColors.pink;
-    } else {
-      statusColor = AppColors.purple;
     }
     return statusColor;
+  }
+
+ static void registerPlatformInstance() {
+    if (Platform.isAndroid) {
+      GeolocatorAndroid.registerWith(
+
+      );
+    } else if (Platform.isIOS) {
+      GeolocatorApple.registerWith();
+    }
   }
 
   static Future<String> getCurrentLocation() async {

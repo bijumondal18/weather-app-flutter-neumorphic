@@ -40,7 +40,7 @@ class HomeAppBar extends StatelessWidget {
             ),
           ),
           Text(
-              '${state.responseModel.location!.name}\n${state.responseModel.location!.region} ${state.responseModel.location!.country}',
+              '${state.responseModel.location!.name}\n${state.responseModel.location!.region}, ${state.responseModel.location!.country}',
               textAlign: TextAlign.center,
               style: const TextStyle(
                   color: AppColors.darkGrey,

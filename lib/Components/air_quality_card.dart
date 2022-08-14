@@ -15,7 +15,7 @@ class AirQualityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var airIndex =
-        state.responseModel.current!.airQuality!.o3.toStringAsFixed(2);
+        state.responseModel.current!.airQuality!.gbDefraIndex.toStringAsFixed(2);
     return Container(
         margin: const EdgeInsets.all(AppSizes.kDefaultPadding),
         width: MediaQuery.of(context).size.width,
@@ -65,10 +65,10 @@ class AirQualityCard extends StatelessWidget {
                                 ),
                                 Text(
                                   AppUtils.getAirQualityStatus(state
-                                      .responseModel.current!.airQuality!.o3),
+                                      .responseModel.current!.airQuality!.gbDefraIndex),
                                   style:  TextStyle(
                                       color: AppUtils.getAirQualityStatusColor(state
-                                          .responseModel.current!.airQuality!.o3),
+                                          .responseModel.current!.airQuality!.gbDefraIndex),
                                       fontSize: AppSizes.headline6,
                                       fontWeight: FontWeight.w700),
                                 ),
@@ -90,8 +90,6 @@ class AirQualityCard extends StatelessWidget {
                                 AppColors.yellow,
                                 AppColors.orange,
                                 AppColors.red,
-                                AppColors.pink,
-                                AppColors.purple
                               ])),
                         ),
                         const SizedBox(
@@ -101,14 +99,14 @@ class AirQualityCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
                             Text(
-                              'Excellent',
+                              'Low',
                               style: TextStyle(
                                   color: AppColors.darkGrey,
                                   fontSize: AppSizes.bodyText2,
                                   fontWeight: FontWeight.w400),
                             ),
                             Text(
-                              'Hazardous',
+                              'Ver High',
                               style: TextStyle(
                                   color: AppColors.darkGrey,
                                   fontSize: AppSizes.bodyText2,
