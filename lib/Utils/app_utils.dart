@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:geolocator/geolocator.dart';
@@ -100,9 +101,9 @@ class AppUtils {
 
     position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    //print('-------position : $position');
+    log('-------position : $position');
     latlng = '${position.latitude},${position.longitude}';
-    //print('-------latlong : $latlng');
+    log('-------latlong : $latlng');
     return latlng;
   }
 }

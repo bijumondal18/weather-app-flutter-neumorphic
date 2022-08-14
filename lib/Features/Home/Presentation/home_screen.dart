@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:starter_project/Commons/commons.dart';
+import 'package:starter_project/Commons/constants.dart';
 import 'package:starter_project/Components/air_quality_card.dart';
 import 'package:starter_project/Components/details_grid.dart';
 import 'package:starter_project/Components/temparature_graph.dart';
@@ -40,7 +41,6 @@ class _BuildBodyState extends State<_BuildBody> {
     super.initState();
     //FlutterNativeSplash.remove();
     weatherBloc.add(GetWeatherDataEvent());
-    AppUtils.getCurrentLocation();
   }
 
   @override

@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:starter_project/Features/Home/Model/response_model.dart';
 import 'package:starter_project/Features/Home/Repository/weather_repository.dart';
+import 'package:starter_project/Utils/app_utils.dart';
 
 part 'weather_event.dart';
 
@@ -13,9 +14,11 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     final WeatherRepository repository = WeatherRepository();
 
     on<GetWeatherDataEvent>((event, emit) async {
+      String locationQuery = await AppUtils.getCurrentLocation();
+      String fullQuery = '&q=$locationQuery&days=10&aqi=yes&alerts=no';
       try {
         emit(WeatherStateLoading());
-        final mData = await repository.fetchWeatherData();
+        final mData = await repository.fetchWeatherData(fullQuery);
         emit(WeatherStateLoaded(mData));
       } catch (e) {
         emit(WeatherStateError(e.toString()));
