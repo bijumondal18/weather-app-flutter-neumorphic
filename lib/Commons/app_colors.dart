@@ -20,7 +20,7 @@ class AppColors {
   static const red = Color(0xF7D33E3E);
   static const error = Color(0xFF963636);
   static const green = Color(0xFF2A752A);
-  static const yellow = Color(0xFFF1CF59);
+  static const yellow = Color(0xFFCCA007);
   static const blue = Color(0xFF1977B2);
   static const facebook = Color(0xFF3b5998);
   static const twitter = Color(0xFF00ACEE);

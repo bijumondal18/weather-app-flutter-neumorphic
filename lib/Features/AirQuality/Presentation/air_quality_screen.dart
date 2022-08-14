@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
 import 'package:starter_project/Features/AirQuality/Model/air_quality_scale_model.dart';
+import 'package:starter_project/Utils/app_utils.dart';
 import 'package:starter_project/Widgets/custom_appbar.dart';
 
 import '../../../Commons/commons.dart';
@@ -21,7 +23,11 @@ class AirQualityScreen extends StatelessWidget {
     var pm10 = state.responseModel.current!.airQuality!.pm10.toStringAsFixed(2);
 
     return Scaffold(
-      appBar: CustomAppBar(state: state, title: 'Air Quality Index'),
+      appBar: CustomAppBar(
+        state: state,
+        title: 'Air Quality Index',
+        icon: AppIcons.airQuality,
+      ),
       body: ListView(
           shrinkWrap: true,
           padding:
@@ -67,7 +73,19 @@ class AirQualityScreen extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(
-                              height: AppSizes.kDefaultPadding,
+                              height: AppSizes.dimen8,
+                            ),
+                            Text(
+                              AppUtils.getAirQualityStatus(
+                                  state.responseModel.current!.airQuality!.no2),
+                              style: TextStyle(
+                                  color: AppUtils.getAirQualityStatusColor(state
+                                      .responseModel.current!.airQuality!.no2),
+                                  fontSize: AppSizes.headline6,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            const SizedBox(
+                              height: AppSizes.dimen4,
                             ),
                             Text(
                               no2,
@@ -119,7 +137,19 @@ class AirQualityScreen extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(
-                              height: AppSizes.kDefaultPadding,
+                              height: AppSizes.dimen8,
+                            ),
+                            Text(
+                              AppUtils.getAirQualityStatus(
+                                  state.responseModel.current!.airQuality!.co),
+                              style: TextStyle(
+                                  color: AppUtils.getAirQualityStatusColor(state
+                                      .responseModel.current!.airQuality!.co),
+                                  fontSize: AppSizes.headline6,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            const SizedBox(
+                              height: AppSizes.dimen4,
                             ),
                             Text(
                               co,
@@ -175,7 +205,19 @@ class AirQualityScreen extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(
-                              height: AppSizes.kDefaultPadding,
+                              height: AppSizes.dimen8,
+                            ),
+                            Text(
+                              AppUtils.getAirQualityStatus(
+                                  state.responseModel.current!.airQuality!.o3),
+                              style: TextStyle(
+                                  color: AppUtils.getAirQualityStatusColor(state
+                                      .responseModel.current!.airQuality!.o3),
+                                  fontSize: AppSizes.headline6,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            const SizedBox(
+                              height: AppSizes.dimen4,
                             ),
                             Text(
                               o3,
@@ -227,7 +269,19 @@ class AirQualityScreen extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(
-                              height: AppSizes.kDefaultPadding,
+                              height: AppSizes.dimen8,
+                            ),
+                            Text(
+                              AppUtils.getAirQualityStatus(
+                                  state.responseModel.current!.airQuality!.so2),
+                              style: TextStyle(
+                                  color: AppUtils.getAirQualityStatusColor(state
+                                      .responseModel.current!.airQuality!.so2),
+                                  fontSize: AppSizes.headline6,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            const SizedBox(
+                              height: AppSizes.dimen4,
                             ),
                             Text(
                               so2,
@@ -283,7 +337,19 @@ class AirQualityScreen extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(
-                              height: AppSizes.kDefaultPadding,
+                              height: AppSizes.dimen8,
+                            ),
+                            Text(
+                              AppUtils.getAirQualityStatus(state
+                                  .responseModel.current!.airQuality!.pm25),
+                              style: TextStyle(
+                                  color: AppUtils.getAirQualityStatusColor(state
+                                      .responseModel.current!.airQuality!.pm25),
+                                  fontSize: AppSizes.headline6,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            const SizedBox(
+                              height: AppSizes.dimen4,
                             ),
                             Text(
                               pm2,
@@ -335,7 +401,19 @@ class AirQualityScreen extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(
-                              height: AppSizes.kDefaultPadding,
+                              height: AppSizes.dimen8,
+                            ),
+                            Text(
+                              AppUtils.getAirQualityStatus(state
+                                  .responseModel.current!.airQuality!.pm10),
+                              style: TextStyle(
+                                  color: AppUtils.getAirQualityStatusColor(state
+                                      .responseModel.current!.airQuality!.pm10),
+                                  fontSize: AppSizes.headline6,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            const SizedBox(
+                              height: AppSizes.dimen4,
                             ),
                             Text(
                               pm10,
@@ -428,8 +506,11 @@ class AirQualityScreen extends StatelessWidget {
                               const SizedBox(
                                 height: AppSizes.dimen8,
                               ),
-                              Text(
+                              ReadMoreText(
                                 airQualityScaleList[index].desc,
+                                trimLines: 2,
+                                trimMode: TrimMode.Line,
+                                colorClickableText: AppColors.blue,
                                 style: const TextStyle(
                                     color: AppColors.darkGrey,
                                     fontSize: AppSizes.bodyText2,

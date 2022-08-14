@@ -18,6 +18,7 @@ class ForecastScreen extends StatelessWidget {
         state: state,
         title:
             'Next ${state.responseModel.forecast!.forecastday!.length}-days Forecast',
+        icon: AppIcons.forecast,
       ),
       body: ListView.builder(
           padding: EdgeInsets.zero,

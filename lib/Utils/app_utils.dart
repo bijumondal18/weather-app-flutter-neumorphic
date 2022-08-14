@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:intl/intl.dart';
+import 'package:starter_project/Commons/commons.dart';
 
 class AppUtils {
   const AppUtils();
@@ -24,7 +27,7 @@ class AppUtils {
     }
     if (index == 1) {
       weekday = 'Tomorrow';
-    }else{
+    } else {
       var inputDate = DateTime.parse(givenDate);
       var outputFormat = DateFormat("EEEE");
       weekday = outputFormat.format(inputDate);
@@ -35,17 +38,38 @@ class AppUtils {
   static String getAirQualityStatus(double value) {
     var status = '';
 
-    if (value <= 50.0) {
-      status = 'Good';
-    } else if (value > 50.0 && value <= 100.0) {
-      status = 'Satisfactory';
-    } else if (value > 100.0 && value <= 300.0) {
+    if (value <= 19.0) {
+      status = 'Excellent';
+    } else if (value > 20.0 && value < 49.0) {
+      status = 'Fair';
+    } else if (value > 50.0 && value <= 99.0) {
       status = 'Poor';
-    } else if (value > 300.0 && value <= 400.0) {
-      status = 'Very Poor';
+    } else if (value > 100.0 && value <= 149.0) {
+      status = 'Unhealthy';
+    } else if (value > 150.0 && value <= 249.0) {
+      status = 'Very Unhealthy';
     } else {
-      status = 'Severe ';
+      status = 'Dangerous ';
     }
     return status;
+  }
+
+  static Color getAirQualityStatusColor(double value) {
+    late Color statusColor;
+
+    if (value <= 19.0) {
+      statusColor = AppColors.green;
+    } else if (value > 20.0 && value < 49.0) {
+      statusColor = AppColors.yellow;
+    } else if (value > 50.0 && value <= 99.0) {
+      statusColor = AppColors.orange;
+    } else if (value > 100.0 && value <= 149.0) {
+      statusColor = AppColors.red;
+    } else if (value > 150.0 && value <= 249.0) {
+      statusColor = AppColors.pink;
+    } else {
+      statusColor = AppColors.purple;
+    }
+    return statusColor;
   }
 }

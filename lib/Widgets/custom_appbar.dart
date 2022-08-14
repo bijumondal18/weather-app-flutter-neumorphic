@@ -6,9 +6,10 @@ import 'neumorphic_card.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final WeatherStateLoaded state;
-  final String title;
+  final String? title;
+  final String? icon;
 
-  const CustomAppBar({Key? key, required this.state, required this.title})
+  const CustomAppBar({Key? key, required this.state, this.title, this.icon})
       : super(key: key);
 
   @override
@@ -40,8 +41,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Image(
-                  image: AssetImage(AppIcons.airQuality),
+                Image(
+                  image: AssetImage(icon.toString()),
                   width: 18,
                   height: 18,
                 ),
@@ -49,7 +50,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   width: AppSizes.kDefaultPadding,
                 ),
                 Text(
-                  title,
+                  title.toString(),
                   style: const TextStyle(
                       color: AppColors.darkGrey,
                       fontSize: AppSizes.bodyText1,
