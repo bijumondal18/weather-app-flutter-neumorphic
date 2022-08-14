@@ -18,12 +18,12 @@ class SunsetSunriseCard extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.10,
       child: NeumorphicCard(
         isClickable: true,
-        child: Padding(
-          padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -42,22 +42,11 @@ class SunsetSunriseCard extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(
-                width: AppSizes.kDefaultPadding,
-              ),
-              Expanded(
-                child: Container(
-                  height: 1,
-                  decoration: BoxDecoration(
-                      color: AppColors.grey,
-                      borderRadius:
-                          BorderRadius.circular(AppSizes.cardCornerRadius)),
-                ),
-              ),
-              const SizedBox(
-                width: AppSizes.kDefaultPadding,
-              ),
-              Column(
+            ),
+            const Expanded(child: CurvedContainer()),
+            Padding(
+              padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -75,11 +64,49 @@ class SunsetSunriseCard extends StatelessWidget {
                         fontWeight: FontWeight.w400),
                   ),
                 ],
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
   }
+}
+
+class CurvedContainer extends StatelessWidget {
+  const CurvedContainer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: CurvePainter(),
+      child: Container(),
+    );
+  }
+}
+
+class CurvePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint();
+
+    paint.color = AppColors.red;
+    paint.style = PaintingStyle.stroke;
+    paint.strokeWidth = 2;
+
+    var startPoint = Offset(0, size.height - 25);
+    var controlPoint1 = Offset(size.width / 4, size.height / 3);
+    var controlPoint2 = Offset(3 * size.width / 4, size.height / 3);
+    var endPoint = Offset(size.width, size.height - 25);
+
+    var path = Path();
+    path.moveTo(startPoint.dx, startPoint.dy);
+    path.cubicTo(controlPoint1.dx, controlPoint1.dy, controlPoint2.dx,
+        controlPoint2.dy, endPoint.dx, endPoint.dy);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
