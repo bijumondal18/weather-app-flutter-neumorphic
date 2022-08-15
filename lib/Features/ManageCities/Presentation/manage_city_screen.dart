@@ -37,7 +37,6 @@ class _BuildBodyState extends State<_BuildBody> {
         Padding(
           padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
           child: NeumorphicCard(
-              isClickable: true,
               child: TextFormField(
                 decoration: const InputDecoration(
                     hintText: 'Search Cities',
@@ -61,7 +60,6 @@ class _BuildBodyState extends State<_BuildBody> {
                         right: AppSizes.kDefaultPadding,
                         top: AppSizes.kDefaultPadding),
                     child: NeumorphicCard(
-                      isClickable: false,
                       child: Padding(
                         padding: EdgeInsets.all(AppSizes.kDefaultPadding),
                         child: Text(

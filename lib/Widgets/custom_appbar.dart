@@ -28,7 +28,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Navigator.pop(context);
               },
               child: const NeumorphicCard(
-                isClickable: true,
                 child: Padding(
                   padding: EdgeInsets.all(AppSizes.dimen12),
                   child: Icon(

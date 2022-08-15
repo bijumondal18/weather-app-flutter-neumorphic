@@ -27,14 +27,17 @@ class AppUtils {
 
   static String getWeekdayFromDate(int index, String givenDate) {
     String weekday = '';
-    switch(index){
-      case 0: weekday = 'Today';
-      break;
-      case 1: weekday = 'Tomorrow';
-      break;
-      default:var inputDate = DateTime.parse(givenDate);
-      var outputFormat = DateFormat("EEEE");
-      weekday = outputFormat.format(inputDate);
+    switch (index) {
+      case 0:
+        weekday = 'Today';
+        break;
+      case 1:
+        weekday = 'Tomorrow';
+        break;
+      default:
+        var inputDate = DateTime.parse(givenDate);
+        var outputFormat = DateFormat("EEEE");
+        weekday = outputFormat.format(inputDate);
     }
     return weekday;
   }
@@ -48,7 +51,7 @@ class AppUtils {
       status = 'Moderate';
     } else if (value > 53 && value <= 70) {
       status = 'High';
-    }  else {
+    } else {
       status = 'Very High';
     }
     return status;
@@ -63,17 +66,15 @@ class AppUtils {
       statusColor = AppColors.yellow;
     } else if (value > 53 && value <= 70) {
       statusColor = AppColors.orange;
-    }  else {
+    } else {
       statusColor = AppColors.red;
     }
     return statusColor;
   }
 
- static void registerPlatformInstance() {
+  static void registerPlatformInstance() {
     if (Platform.isAndroid) {
-      GeolocatorAndroid.registerWith(
-
-      );
+      GeolocatorAndroid.registerWith();
     } else if (Platform.isIOS) {
       GeolocatorApple.registerWith();
     }
@@ -99,15 +100,17 @@ class AppUtils {
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
+      latlng = 'Kolkata';
+      return latlng;
+      // return Future.error(
+      //   'Location permissions are permanently denied, we cannot request permissions.');
     }
 
     position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     log('-------position : $position');
     latlng = '${position.latitude},${position.longitude}';
-    log('-------latlong : $latlng');
+    log('-------latlng : $latlng');
     return latlng;
   }
 }

@@ -29,7 +29,6 @@ class CurrentPollutantsFragment extends StatelessWidget {
             children: [
               Expanded(
                 child: NeumorphicCard(
-                    isClickable: false,
                     child: Padding(
                       padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
                       child: Column(
@@ -93,7 +92,6 @@ class CurrentPollutantsFragment extends StatelessWidget {
               const SizedBox(width: AppSizes.kDefaultPadding),
               Expanded(
                 child: NeumorphicCard(
-                    isClickable: false,
                     child: Padding(
                       padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
                       child: Column(
@@ -161,7 +159,6 @@ class CurrentPollutantsFragment extends StatelessWidget {
             children: [
               Expanded(
                 child: NeumorphicCard(
-                    isClickable: false,
                     child: Padding(
                       padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
                       child: Column(
@@ -225,7 +222,6 @@ class CurrentPollutantsFragment extends StatelessWidget {
               const SizedBox(width: AppSizes.kDefaultPadding),
               Expanded(
                 child: NeumorphicCard(
-                    isClickable: false,
                     child: Padding(
                       padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
                       child: Column(
@@ -293,7 +289,6 @@ class CurrentPollutantsFragment extends StatelessWidget {
             children: [
               Expanded(
                 child: NeumorphicCard(
-                    isClickable: false,
                     child: Padding(
                       padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
                       child: Column(
@@ -357,7 +352,6 @@ class CurrentPollutantsFragment extends StatelessWidget {
               const SizedBox(width: AppSizes.kDefaultPadding),
               Expanded(
                 child: NeumorphicCard(
-                    isClickable: false,
                     child: Padding(
                       padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
                       child: Column(

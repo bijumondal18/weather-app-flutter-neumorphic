@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
 import 'package:starter_project/Features/ManageCities/Presentation/manage_city_screen.dart';
+import 'package:starter_project/Features/Search/Presentation/search_screen.dart';
 
 import '../Commons/app_colors.dart';
 import '../Commons/app_sizes.dart';
@@ -29,15 +30,10 @@ class HomeAppBar extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ManageCitiesScreen(
-                            state: state,
-                          )));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) =>const SearchScreen()));
             },
             child: const NeumorphicCard(
-              isClickable: true,
               child: Padding(
                 padding: EdgeInsets.all(AppSizes.dimen12),
                 child: Icon(
@@ -82,7 +78,6 @@ class HomeAppBar extends StatelessWidget {
                   });
             },
             child: const NeumorphicCard(
-              isClickable: true,
               child: Padding(
                 padding: EdgeInsets.all(AppSizes.dimen12),
                 child: Icon(

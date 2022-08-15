@@ -20,7 +20,6 @@ class AirQualityScaleFragment extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(bottom: AppSizes.kDefaultPadding),
             child: NeumorphicCard(
-              isClickable: true,
               child: Padding(
                 padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
                 child: Column(

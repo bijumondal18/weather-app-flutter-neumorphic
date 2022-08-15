@@ -21,7 +21,6 @@ class AirQualityCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.22,
         child: NeumorphicCard(
-            isClickable: true,
             child: Padding(
               padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
               child: Column(

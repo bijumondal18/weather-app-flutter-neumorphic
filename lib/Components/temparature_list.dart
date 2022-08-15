@@ -28,7 +28,6 @@ class TemparatureList extends StatelessWidget {
                   top: AppSizes.kDefaultPadding,
                   bottom: AppSizes.kDefaultPadding),
               child: NeumorphicCard(
-                  isClickable: true,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: AppSizes.kDefaultPadding),

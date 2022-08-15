@@ -17,7 +17,6 @@ class SunsetSunriseCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.10,
       child: NeumorphicCard(
-        isClickable: true,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

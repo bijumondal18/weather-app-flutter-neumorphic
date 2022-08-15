@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starter_project/Commons/theme.dart';
+import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
 import 'package:starter_project/Features/Home/Presentation/home_screen.dart';
+import 'package:starter_project/Features/Home/Repository/weather_repository.dart';
 import 'package:starter_project/Utils/app_utils.dart';
 
 void main() {
- // WidgetsBinding widgetsBinding =
+  // WidgetsBinding widgetsBinding =
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -20,11 +23,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Weather App',
-      theme: AppTheme.lightTheme,
-      home: const HomeScreen(),
+    return RepositoryProvider(
+      create: (context) => WeatherRepository(),
+      child: BlocProvider(
+        create: (context) => WeatherBloc()..add(GetWeatherDataEvent()),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Weather App',
+          theme: AppTheme.lightTheme,
+          home: const HomeScreen(),
+        ),
+      ),
     );
   }
 }

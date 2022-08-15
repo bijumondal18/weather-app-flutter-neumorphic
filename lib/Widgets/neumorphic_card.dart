@@ -6,10 +6,8 @@ import '../Commons/app_sizes.dart';
 
 class NeumorphicCard extends StatefulWidget {
   final Widget child;
-  final bool? isClickable;
 
-  const NeumorphicCard({Key? key, required this.child, this.isClickable})
-      : super(key: key);
+  const NeumorphicCard({Key? key, required this.child}) : super(key: key);
 
   @override
   State<NeumorphicCard> createState() => _NeumorphicCardState();
@@ -39,42 +37,22 @@ class _NeumorphicCardState extends State<NeumorphicCard> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSizes.cardCornerRadius),
             color: AppColors.backgroundColor,
-            boxShadow:
-            //widget.isClickable!
-              //  ?
-            [
-                    //bottom shadow
-                    BoxShadow(
-                        color: Colors.grey.shade400,
-                        offset: distance,
-                        blurRadius: blur,
-                        spreadRadius: 1,
-                        inset: _isPressed),
-                    //top shadow
-                    BoxShadow(
-                        color: AppColors.white,
-                        offset: -distance,
-                        blurRadius: blur,
-                        spreadRadius: 1,
-                        inset: _isPressed),
-                  ]
-                // : [
-                //     //bottom shadow
-                //     BoxShadow(
-                //         color: Colors.grey.shade500,
-                //         offset: distance,
-                //         blurRadius: blur,
-                //         spreadRadius: 1,
-                //         inset: false),
-                //     //top shadow
-                //     BoxShadow(
-                //         color: Colors.white,
-                //         offset: -distance,
-                //         blurRadius: blur,
-                //         spreadRadius: 1,
-                //         inset: false),
-                //   ]
-        ),
+            boxShadow: [
+              //bottom shadow
+              BoxShadow(
+                  color: Colors.grey.shade400,
+                  offset: distance,
+                  blurRadius: blur,
+                  spreadRadius: 1,
+                  inset: _isPressed),
+              //top shadow
+              BoxShadow(
+                  color: AppColors.white,
+                  offset: -distance,
+                  blurRadius: blur,
+                  spreadRadius: 1,
+                  inset: _isPressed),
+            ]),
         child: widget.child,
       ),
     );

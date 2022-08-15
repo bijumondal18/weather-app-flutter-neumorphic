@@ -31,7 +31,6 @@ class ForecastScreen extends StatelessWidget {
                   right: AppSizes.kDefaultPadding,
                   top: AppSizes.kDefaultPadding),
               child: NeumorphicCard(
-                isClickable: false,
                 child: Padding(
                   padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
                   child: Row(

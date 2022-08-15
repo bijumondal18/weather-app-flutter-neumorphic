@@ -6,6 +6,7 @@ import 'package:starter_project/Components/air_quality_card.dart';
 import 'package:starter_project/Components/details_grid.dart';
 import 'package:starter_project/Components/temparature_list.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
+import 'package:starter_project/Widgets/custom_loader.dart';
 
 import '../../../Components/current_temparature_header.dart';
 import '../../../Components/home_appbar.dart';
@@ -42,63 +43,60 @@ class _BuildBodyState extends State<_BuildBody> {
     super.initState();
     //FlutterNativeSplash.remove();
     AppUtils.registerPlatformInstance();
-    weatherBloc.add(GetWeatherDataEvent());
+   // weatherBloc.add(GetWeatherDataEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => weatherBloc,
-      child: BlocConsumer<WeatherBloc, WeatherState>(
-        listener: (context, state) {
+    return BlocConsumer<WeatherBloc, WeatherState>(
+      listener: (context, state) {
 
-        },
-        builder: (context, state) {
-          if (state is WeatherStateInitial) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (state is WeatherStateLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (state is WeatherStateError) {
-            return Center(child: Text(state.error.toString()));
-          }
-          if (state is WeatherStateLoaded) {
-            return Column(
-              children: [
-                SafeArea(bottom: false, child: HomeAppBar(state: state)),
-                Expanded(
-                  child: RefreshIndicator(
-                    key: refreshKey,
-                    onRefresh: () async {
-                      weatherBloc.add(GetWeatherDataEvent());
-                    },
-                    child: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CurrentTemparatureHeader(state: state),
-                          ForecastCard(state: state),
-                          TemparatureList(state: state),
-                          DetailsGrid(state: state),
-                          SunsetSunriseCard(state: state),
-                          AirQualityCard(state: state),
-                          const ProviderInformation(),
-                          const SizedBox(
-                            height: AppSizes.dimen40,
-                          )
-                        ],
-                      ),
+      },
+      builder: (context, state) {
+        if (state is WeatherStateInitial) {
+          return const CustomLoader();
+        }
+        if (state is WeatherStateLoading) {
+          return const CustomLoader();
+        }
+        if (state is WeatherStateError) {
+          return Center(child: Text(state.error.toString()));
+        }
+        if (state is WeatherStateLoaded) {
+          return Column(
+            children: [
+              SafeArea(bottom: false, child: HomeAppBar(state: state)),
+              Expanded(
+                child: RefreshIndicator(
+                  key: refreshKey,
+                  onRefresh: () async {
+                    weatherBloc.add(GetWeatherDataEvent());
+                  },
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CurrentTemparatureHeader(state: state),
+                        ForecastCard(state: state),
+                        TemparatureList(state: state),
+                        DetailsGrid(state: state),
+                        SunsetSunriseCard(state: state),
+                        AirQualityCard(state: state),
+                        const ProviderInformation(),
+                        const SizedBox(
+                          height: AppSizes.dimen40,
+                        )
+                      ],
                     ),
                   ),
                 ),
-              ],
-            );
-          }
-          return Container();
-        },
-      ),
+              ),
+            ],
+          );
+        }
+        return Container();
+      },
     );
   }
 }

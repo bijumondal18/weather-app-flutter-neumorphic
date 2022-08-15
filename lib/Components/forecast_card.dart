@@ -20,7 +20,6 @@ class ForecastCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.23,
       child: NeumorphicCard(
-        isClickable: false,
         child: Column(
           children: [
             Expanded(
