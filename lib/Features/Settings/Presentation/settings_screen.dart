@@ -40,14 +40,26 @@ class _BuildBodyState extends State<_BuildBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Units'),
+            const Text(
+              'Units',
+              style: TextStyle(
+                  fontSize: AppSizes.bodyText1,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.darkGrey),
+            ),
             const SizedBox(height: AppSizes.kDefaultPadding),
             Column(
               children: [
                 NeumorphicButton(
                   onPressed: () {},
                   child: const ListTile(
-                    title: Text('Temperature Units'),
+                    title: Text(
+                      'Temperature Units',
+                      style: TextStyle(
+                          fontSize: AppSizes.bodyText1,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.darkGrey),
+                    ),
                     trailing: Text('°C'),
                   ),
                 ),
@@ -55,29 +67,53 @@ class _BuildBodyState extends State<_BuildBody> {
                 NeumorphicButton(
                   onPressed: () {},
                   child: const ListTile(
-                    title: Text('Wind Speed Units'),
+                    title: Text(
+                      'Wind Speed Units',
+                      style: TextStyle(
+                          fontSize: AppSizes.bodyText1,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.darkGrey),
+                    ),
                     trailing: Text('Kilometers/Hour (km/h)'),
                   ),
                 ),
                 const SizedBox(height: AppSizes.kDefaultPadding),
                 NeumorphicButton(
                   onPressed: () {},
-                  child:const  ListTile(
-                    title: Text('Atmospheric Pressure Units'),
+                  child: const ListTile(
+                    title: Text(
+                      'Atmospheric Pressure Units',
+                      style: TextStyle(
+                          fontSize: AppSizes.bodyText1,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.darkGrey),
+                    ),
                     trailing: Text('Millibar (mBar)'),
                   ),
                 )
               ],
             ),
             const SizedBox(height: AppSizes.kDefaultPadding),
-            const Text('About Weather'),
+            const Text(
+              'About Weather',
+              style: TextStyle(
+                  fontSize: AppSizes.bodyText1,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.darkGrey),
+            ),
             const SizedBox(height: AppSizes.kDefaultPadding),
             Column(
               children: [
                 NeumorphicButton(
                   onPressed: () {},
                   child: const ListTile(
-                    title: Text('Feedback'),
+                    title: Text(
+                      'Feedback',
+                      style: TextStyle(
+                          fontSize: AppSizes.bodyText1,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.darkGrey),
+                    ),
                     trailing: Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: AppColors.grey,
@@ -89,7 +125,13 @@ class _BuildBodyState extends State<_BuildBody> {
                 NeumorphicButton(
                   onPressed: () {},
                   child: const ListTile(
-                    title: Text('Privacy Policy'),
+                    title: Text(
+                      'Privacy Policy',
+                      style: TextStyle(
+                          fontSize: AppSizes.bodyText1,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.darkGrey),
+                    ),
                     trailing: Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: AppColors.grey,
@@ -101,7 +143,13 @@ class _BuildBodyState extends State<_BuildBody> {
                 NeumorphicButton(
                   onPressed: () {},
                   child: const ListTile(
-                    title: Text('About'),
+                    title: Text(
+                      'About',
+                      style: TextStyle(
+                          fontSize: AppSizes.bodyText1,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.darkGrey),
+                    ),
                     trailing: Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: AppColors.grey,
@@ -115,7 +163,13 @@ class _BuildBodyState extends State<_BuildBody> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('App Version : 1.0.3'),
+                Text(
+                  'App Version : 1.0.3',
+                  style: TextStyle(
+                      fontSize: AppSizes.bodyText2,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.grey),
+                ),
               ],
             )
           ],
