@@ -33,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   padding: EdgeInsets.all(AppSizes.dimen12),
                   child: Icon(
                     Icons.arrow_back_ios_rounded,
-                    size: 24,
+                    size: AppSizes.appBarIconSize,
                   ),
                 ),
               ),

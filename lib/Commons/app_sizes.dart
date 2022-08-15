@@ -11,7 +11,7 @@ class AppSizes {
   static const double kDefaultMargin = 16.0;
 
   static const double bottomNavigationBarIconSize = 24.0;
-  static const double appBarIconSize = 17.0;
+  static const double appBarIconSize = 19.0;
 
   static const double dimen40 = 40.0;
   static const double dimen30 = 30.0;

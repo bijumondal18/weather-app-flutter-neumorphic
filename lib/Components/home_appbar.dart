@@ -13,6 +13,12 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> choiceList = [
+      'Share',
+      'Rate Us',
+      'Settings',
+    ];
+
     return Container(
       margin: const EdgeInsets.all(AppSizes.kDefaultPadding),
       height: 48,
@@ -36,7 +42,7 @@ class HomeAppBar extends StatelessWidget {
                 padding: EdgeInsets.all(AppSizes.dimen12),
                 child: Icon(
                   Icons.add,
-                  size: 24,
+                  size: AppSizes.appBarIconSize,
                 ),
               ),
             ),
@@ -61,14 +67,27 @@ class HomeAppBar extends StatelessWidget {
             ],
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return ListView.builder(
+                        itemCount: choiceList.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(choiceList[index]),
+                          );
+                        });
+                  });
+            },
             child: const NeumorphicCard(
               isClickable: true,
               child: Padding(
                 padding: EdgeInsets.all(AppSizes.dimen12),
                 child: Icon(
                   Icons.more_vert_rounded,
-                  size: 24,
+                  size: AppSizes.appBarIconSize,
                 ),
               ),
             ),
@@ -76,5 +95,14 @@ class HomeAppBar extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+void handleClick(String value) {
+  switch (value) {
+    case 'Share':
+      break;
+    case 'Settings':
+      break;
   }
 }

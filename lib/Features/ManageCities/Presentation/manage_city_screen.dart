@@ -16,10 +16,7 @@ class ManageCitiesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        state: state,
-        title: 'Manage Cities',
-        icon: AppIcons.city
-      ),
+          state: state, title: 'Manage Cities', icon: AppIcons.city),
       body: const _BuildBody(),
     );
   }
@@ -50,62 +47,42 @@ class _BuildBodyState extends State<_BuildBody> {
         ),
         //const SizedBox(height: AppSizes.kDefaultPadding),
         Expanded(
-          child: ListView.separated(
+          child: GridView.builder(
             itemCount: 15,
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(
-                    left: AppSizes.kDefaultPadding,
-                    right: AppSizes.kDefaultPadding,
-                    top: AppSizes.kDefaultPadding),
-                child: NeumorphicCard(
-                  isClickable: false,
-                  child: Padding(
-                    padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const NeumorphicCard(
-                            isClickable: true,
-                            child: Padding(
-                              padding: EdgeInsets.all(AppSizes.dimen8),
-                              child: Icon(EvaIcons.navigation2),
-                            )),
-                        const SizedBox(width: AppSizes.kDefaultPadding),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                'London',
-                                style: TextStyle(
-                                    color: AppColors.darkGrey,
-                                    fontSize: AppSizes.headline6,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                'London',
-                                style: TextStyle(
-                                    color: AppColors.darkGrey,
-                                    fontSize: AppSizes.bodyText2,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: AppSizes.kDefaultPadding,
+                        right: AppSizes.kDefaultPadding,
+                        top: AppSizes.kDefaultPadding),
+                    child: NeumorphicCard(
+                      isClickable: false,
+                      child: Padding(
+                        padding: EdgeInsets.all(AppSizes.kDefaultPadding),
+                        child: Text(
+                          'London',
+                          style: TextStyle(
+                              color: AppColors.darkGrey,
+                              fontSize: AppSizes.headline6,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               );
             },
-            separatorBuilder: (BuildContext context, int index) {
-              return const SizedBox(height: 8);
-            },
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              mainAxisSpacing: 0,
+              crossAxisSpacing: 0,
+              childAspectRatio: 2,
+              crossAxisCount: 3,
+            ),
           ),
         )
       ],
