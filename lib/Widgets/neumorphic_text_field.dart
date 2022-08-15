@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart' hide BoxShadow, BoxDecoration;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:starter_project/Features/Search/Bloc/searched_location_bloc.dart';
 
 import '../Commons/app_colors.dart';
 import '../Commons/app_sizes.dart';
 
 class NeumorphicTextField extends StatelessWidget {
   final TextEditingController controller;
+  //final VoidCallback onChanged;
 
-  const NeumorphicTextField({Key? key, required this.controller})
+  const NeumorphicTextField(
+      {Key? key, required this.controller,
+        //required this.onChanged
+      })
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-        duration: const Duration(milliseconds: 50),
+    return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSizes.cardCornerRadius),
             color: AppColors.backgroundColor,
@@ -34,6 +39,8 @@ class NeumorphicTextField extends StatelessWidget {
                   inset: true),
             ]),
         child: TextFormField(
+          autofocus: true,
+          onChanged: (value) => BlocProvider.of<SearchedLocationBloc>(context).add(GetSearchedLocationEvent(controller.text.trim().toLowerCase())),
           controller: controller,
           decoration: const InputDecoration(
               hintText: 'Search Location',

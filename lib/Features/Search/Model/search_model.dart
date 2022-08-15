@@ -1,3 +1,4 @@
+
 class SearchModel {
   int? id;
   String? name;
