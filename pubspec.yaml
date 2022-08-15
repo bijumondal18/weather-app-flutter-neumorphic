@@ -50,10 +50,10 @@ flutter_native_splash:
   ios: true
   web: false
 
-  fullscreen: true
+  fullscreen: false
   android12: false
 
-  color: "#FFFFFF"
+  color: "#989696"
   #background_image: "lib/Resources/Images/app-logo.png"
   image: "lib/Resources/Images/app-logo.png"
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project/Widgets/neumorphic_button.dart';
 
 import '../Commons/commons.dart';
 import '../Features/Home/Bloc/weather_bloc.dart';
@@ -23,17 +24,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            InkWell(
-              onTap: () {
+            NeumorphicButton(
+              onPressed: () {
                 Navigator.pop(context);
               },
-              child: const NeumorphicCard(
-                child: Padding(
-                  padding: EdgeInsets.all(AppSizes.dimen12),
-                  child: Icon(
-                    Icons.arrow_back_ios_rounded,
-                    size: AppSizes.appBarIconSize,
-                  ),
+              child: const Padding(
+                padding: EdgeInsets.all(AppSizes.dimen12),
+                child: Icon(
+                  Icons.arrow_back_ios_rounded,
+                  size: AppSizes.appBarIconSize,
                 ),
               ),
             ),

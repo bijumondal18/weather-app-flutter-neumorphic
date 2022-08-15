@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
-import 'package:starter_project/Features/ManageCities/Presentation/manage_city_screen.dart';
 import 'package:starter_project/Features/Search/Presentation/search_screen.dart';
+import 'package:starter_project/Widgets/neumorphic_button.dart';
 
 import '../Commons/app_colors.dart';
 import '../Commons/app_sizes.dart';
+import '../Features/Settings/Presentation/settings_screen.dart';
 import '../Widgets/neumorphic_card.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -14,12 +15,6 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> choiceList = [
-      'Share',
-      'Rate Us',
-      'Settings',
-    ];
-
     return Container(
       margin: const EdgeInsets.all(AppSizes.kDefaultPadding),
       height: 48,
@@ -28,18 +23,18 @@ class HomeAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          InkWell(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) =>const SearchScreen()));
+          NeumorphicButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SearchScreen()));
             },
-            child: const NeumorphicCard(
-              child: Padding(
-                padding: EdgeInsets.all(AppSizes.dimen12),
-                child: Icon(
-                  Icons.add,
-                  size: AppSizes.appBarIconSize,
-                ),
+            child: const Padding(
+              padding: EdgeInsets.all(AppSizes.dimen12),
+              child: Icon(
+                Icons.add,
+                size: AppSizes.appBarIconSize,
               ),
             ),
           ),
@@ -62,28 +57,18 @@ class HomeAppBar extends StatelessWidget {
                       fontWeight: FontWeight.w400)),
             ],
           ),
-          InkWell(
-            onTap: () {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return ListView.builder(
-                        itemCount: choiceList.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(choiceList[index]),
-                          );
-                        });
-                  });
+          NeumorphicButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => SettingsScreen(state: state)));
             },
-            child: const NeumorphicCard(
-              child: Padding(
-                padding: EdgeInsets.all(AppSizes.dimen12),
-                child: Icon(
-                  Icons.more_vert_rounded,
-                  size: AppSizes.appBarIconSize,
-                ),
+            child: const Padding(
+              padding: EdgeInsets.all(AppSizes.dimen12),
+              child: Icon(
+                Icons.more_vert_rounded,
+                size: AppSizes.appBarIconSize,
               ),
             ),
           ),

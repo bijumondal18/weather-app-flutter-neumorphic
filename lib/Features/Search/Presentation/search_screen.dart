@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starter_project/Commons/commons.dart';
 import 'package:starter_project/Features/Search/Bloc/searched_location_bloc.dart';
 import 'package:starter_project/Features/Search/Model/search_model.dart';
+import 'package:starter_project/Widgets/neumorphic_button.dart';
 import 'package:starter_project/Widgets/neumorphic_card.dart';
 import 'package:starter_project/Widgets/neumorphic_text_field.dart';
 
@@ -52,17 +53,15 @@ class _SearchScreenState extends State<SearchScreen> {
                       controller: _searchController,
                     )),
                     const SizedBox(width: AppSizes.kDefaultPadding),
-                    InkWell(
-                      onTap: () {
+                    NeumorphicButton(
+                      onPressed: (){
                         Navigator.pop(context);
                       },
-                      child: const NeumorphicCard(
-                        child: Padding(
-                          padding: EdgeInsets.all(AppSizes.dimen12),
-                          child: Icon(
-                            Icons.close,
-                            size: AppSizes.appBarIconSize,
-                          ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(AppSizes.dimen12),
+                        child: Icon(
+                          Icons.close,
+                          size: AppSizes.appBarIconSize,
                         ),
                       ),
                     ),
@@ -74,12 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 if (state is SearchedLocationStateLoaded) {}
               }, builder: (context, state) {
 
-                if (state is SearchedLocationStateInitial) {
-                  //TODO return some predefined locations here...
-                  //or build a new listview widget or grid view widget here
-                  //for initial predefined countries list
-                  //so that user can select location form that list too.
-                }
+                if (state is SearchedLocationStateInitial) {}
                 if (state is SearchedLocationStateLoading) {
                   return const Center(child: Text('Loading...'));
                 }
