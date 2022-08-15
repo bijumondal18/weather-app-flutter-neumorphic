@@ -105,7 +105,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           ),
                   );
                 }
-                return Container();
+                return const Expanded(child: Center(child: Text('No Results')));
               }),
             ],
           ),

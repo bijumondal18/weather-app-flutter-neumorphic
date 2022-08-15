@@ -19,9 +19,9 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
 
   @override
   Widget build(BuildContext context) {
-    Offset? distance = _isPressed ? const Offset(2, 2) : const Offset(8, 8);
+    Offset? distance = _isPressed ? const Offset(2, 2) : const Offset(5, 5);
     double blur = _isPressed ? 5 : 15;
-    return InkWell(
+    return GestureDetector(
       onTap: widget.onPressed,
       child: Listener(
         onPointerUp: (_) {
@@ -49,7 +49,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
                     inset: _isPressed),
                 //top shadow
                 BoxShadow(
-                    color: AppColors.white,
+                    color: AppColors.white.withOpacity(0.8),
                     offset: -distance,
                     blurRadius: blur,
                     spreadRadius: 1,
