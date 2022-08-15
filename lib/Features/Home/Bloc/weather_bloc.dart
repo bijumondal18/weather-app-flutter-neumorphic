@@ -15,7 +15,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
     on<GetWeatherDataEvent>((event, emit) async {
       String locationQuery = await AppUtils.getCurrentLocation();
-      String fullQuery = '&q=$locationQuery&days=10&aqi=yes&alerts=no';
+      String fullQuery = '&q=$locationQuery&days=8&aqi=yes&alerts=no';
       try {
         emit(WeatherStateLoading());
         final mData = await repository.fetchWeatherData(fullQuery);

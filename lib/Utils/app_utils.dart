@@ -27,13 +27,12 @@ class AppUtils {
 
   static String getWeekdayFromDate(int index, String givenDate) {
     String weekday = '';
-    if (index == 0) {
-      weekday = 'Today';
-    }
-    if (index == 1) {
-      weekday = 'Tomorrow';
-    } else {
-      var inputDate = DateTime.parse(givenDate);
+    switch(index){
+      case 0: weekday = 'Today';
+      break;
+      case 1: weekday = 'Tomorrow';
+      break;
+      default:var inputDate = DateTime.parse(givenDate);
       var outputFormat = DateFormat("EEEE");
       weekday = outputFormat.format(inputDate);
     }
