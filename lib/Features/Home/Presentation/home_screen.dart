@@ -37,21 +37,18 @@ class _BuildBodyState extends State<_BuildBody> {
   final WeatherBloc weatherBloc = WeatherBloc();
   var refreshKey = GlobalKey<RefreshIndicatorState>();
 
-
   @override
   void initState() {
     super.initState();
     //FlutterNativeSplash.remove();
     AppUtils.registerPlatformInstance();
-   // weatherBloc.add(GetWeatherDataEvent());
+    // weatherBloc.add(GetWeatherDataEvent());
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<WeatherBloc, WeatherState>(
-      listener: (context, state) {
-
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         if (state is WeatherStateInitial) {
           return const CustomLoader();
@@ -70,7 +67,8 @@ class _BuildBodyState extends State<_BuildBody> {
                 child: RefreshIndicator(
                   key: refreshKey,
                   onRefresh: () async {
-                    weatherBloc.add(GetWeatherDataEvent());
+                    weatherBloc.add(GetSearchedWeatherDataEvent(
+                        state.responseModel.location!.name.toString()));
                   },
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),

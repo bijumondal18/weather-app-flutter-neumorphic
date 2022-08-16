@@ -32,6 +32,12 @@ class _BuildBody extends StatefulWidget {
 }
 
 class _BuildBodyState extends State<_BuildBody> {
+  final List<String> items = [
+    '°C',
+    '°F',
+  ];
+  var selectedTemperature = '°C';
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -52,15 +58,31 @@ class _BuildBodyState extends State<_BuildBody> {
               children: [
                 NeumorphicButton(
                   onPressed: () {},
-                  child: const ListTile(
-                    title: Text(
+                  child: ListTile(
+                    title: const Text(
                       'Temperature Units',
                       style: TextStyle(
                           fontSize: AppSizes.bodyText1,
                           fontWeight: FontWeight.w400,
                           color: AppColors.darkGrey),
                     ),
-                    trailing: Text('°C'),
+                    trailing: DropdownButton<String>(
+                      alignment: AlignmentDirectional.topStart,
+                      dropdownColor: AppColors.backgroundColor,
+                      elevation: 1,
+                      borderRadius: BorderRadius.circular(AppSizes.cardCornerRadius),
+                        value: selectedTemperature,
+                        onChanged: (value) {
+                          setState((){
+                            selectedTemperature = value!;
+                          });
+                        },
+                        items: items.map<DropdownMenuItem<String>>(
+                          (String value) {
+                            return DropdownMenuItem(
+                                value: value, child: Text(value));
+                          },
+                        ).toList()),
                   ),
                 ),
                 const SizedBox(height: AppSizes.kDefaultPadding),
@@ -74,7 +96,7 @@ class _BuildBodyState extends State<_BuildBody> {
                           fontWeight: FontWeight.w400,
                           color: AppColors.darkGrey),
                     ),
-                    trailing: Text('Kilometers/Hour (km/h)'),
+                    trailing: Text('Kilometers/Hr (km/h)'),
                   ),
                 ),
                 const SizedBox(height: AppSizes.kDefaultPadding),
@@ -177,4 +199,32 @@ class _BuildBodyState extends State<_BuildBody> {
       ),
     );
   }
+}
+
+Widget neumorphicSwitch() {
+  return Container(
+    width: 100,
+    height: 40,
+    decoration: BoxDecoration(
+        color: AppColors.red,
+        borderRadius: BorderRadius.circular(AppSizes.dimen30)),
+    child: Row(
+      children: [
+        Expanded(
+            flex: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: AppColors.green,
+                  borderRadius: BorderRadius.circular(AppSizes.dimen30)),
+            )),
+        Expanded(
+            flex: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: AppColors.yellow,
+                  borderRadius: BorderRadius.circular(AppSizes.dimen30)),
+            )),
+      ],
+    ),
+  );
 }

@@ -2,6 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starter_project/Commons/commons.dart';
+import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
 import 'package:starter_project/Features/Search/Bloc/searched_location_bloc.dart';
 import 'package:starter_project/Features/Search/Model/search_model.dart';
 import 'package:starter_project/Widgets/neumorphic_button.dart';
@@ -18,7 +19,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
 
-   List<SearchModel> searchedLocation = [];
+  List<SearchModel> searchedLocation = [];
 
   @override
   void initState() {
@@ -54,7 +55,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     )),
                     const SizedBox(width: AppSizes.kDefaultPadding),
                     NeumorphicButton(
-                      onPressed: (){
+                      onPressed: () {
                         Navigator.pop(context);
                       },
                       child: const Padding(
@@ -72,7 +73,6 @@ class _SearchScreenState extends State<SearchScreen> {
                   listener: (context, state) {
                 if (state is SearchedLocationStateLoaded) {}
               }, builder: (context, state) {
-
                 if (state is SearchedLocationStateInitial) {}
                 if (state is SearchedLocationStateLoading) {
                   return const Center(child: Text('Loading...'));
@@ -80,29 +80,45 @@ class _SearchScreenState extends State<SearchScreen> {
                 if (state is SearchedLocationStateLoaded) {
                   return Expanded(
                     child: ListView.builder(
-                            itemCount: state.searchModel.length,
-                            physics: const BouncingScrollPhysics(),
-                            shrinkWrap: true,
-                            itemBuilder: ( ctx, index) {
-                              return ListTile(
-                                title: Text(
-                                  '${state.searchModel[index].name}',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.darkGrey,
-                                      fontSize: AppSizes.bodyText1),
-                                ),
-                                subtitle: Text(
-                                  '${state.searchModel[index].region}, ${state.searchModel[index].country}',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColors.darkGrey,
-                                      fontSize: AppSizes.bodyText2),
-                                ),
-                                trailing: const Icon(EvaIcons.plus),
-                              );
-                            },
+                      itemCount: state.searchModel.length,
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (ctx, index) {
+                        return ListTile(
+                          title: Text(
+                            '${state.searchModel[index].name}',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.darkGrey,
+                                fontSize: AppSizes.bodyText1),
                           ),
+                          subtitle: Text(
+                            '${state.searchModel[index].region}, ${state.searchModel[index].country}',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.darkGrey,
+                                fontSize: AppSizes.bodyText2),
+                          ),
+                          trailing: NeumorphicButton(
+                              onPressed: () {
+                                BlocProvider.of<WeatherBloc>(context).add(
+                                    GetSearchedWeatherDataEvent(state
+                                        .searchModel[index].name
+                                        .toString()));
+                                Navigator.pop(context);
+                              },
+                              child: const Padding(
+                                padding:
+                                    EdgeInsets.all(AppSizes.cardCornerRadius),
+                                child: Icon(
+                                  EvaIcons.plus,
+                                  color: AppColors.darkGrey,
+                                  size: AppSizes.appBarIconSize,
+                                ),
+                              )),
+                        );
+                      },
+                    ),
                   );
                 }
                 return const Expanded(child: Center(child: Text('No Results')));

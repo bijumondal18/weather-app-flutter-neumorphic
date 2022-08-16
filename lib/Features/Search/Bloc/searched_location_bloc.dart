@@ -20,10 +20,10 @@ class SearchedLocationBloc
     on<GetSearchedLocationEvent>((event, emit) async {
       try {
         emit(SearchedLocationStateLoading());
-        final mData = await repository.fetchSearchedLocation('&q=${event.query}');
-        log('------mData : $mData');
+        final mList = await repository.fetchSearchedLocation('&q=${event.query}');
+        log('------mData : $mList');
         //Future.delayed(const Duration(milliseconds: 2000));
-        emit(SearchedLocationStateLoaded(mData as List<SearchModel>));
+        emit(SearchedLocationStateLoaded(mList));
       } catch (e) {
         emit(SearchedLocationStateError(e.toString()));
       }

@@ -5,7 +5,7 @@ import '../../../Api/api_provider.dart';
 class SearchedLocationRepository {
   final ApiProvider apiProvider = ApiProvider();
 
-  Future<SearchModel> fetchSearchedLocation(String query) {
+  Future<List<SearchModel>> fetchSearchedLocation(String query) {
     return apiProvider.fetchSearchedLocation(query);
   }
 }

@@ -38,24 +38,29 @@ class HomeAppBar extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            children: [
-              Text('${state.responseModel.location!.name}',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      color: AppColors.darkGrey,
-                      fontSize: AppSizes.headline6,
-                      fontWeight: FontWeight.w500)),
-              Text(
-                  '${state.responseModel.location!.region}, ${state.responseModel.location!.country}',
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      color: AppColors.darkGrey,
-                      fontSize: AppSizes.bodyText2,
-                      fontWeight: FontWeight.w400)),
-            ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal:AppSizes.kDefaultPadding),
+              child: Column(
+                children: [
+                  Text('${state.responseModel.location!.name}',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: AppColors.darkGrey,
+                          fontSize: AppSizes.headline6,
+                          fontWeight: FontWeight.w500)),
+                  Text(
+                      '${state.responseModel.location!.region}, ${state.responseModel.location!.country}',
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                          color: AppColors.darkGrey,
+                          fontSize: AppSizes.bodyText2,
+                          fontWeight: FontWeight.w400)),
+                ],
+              ),
+            ),
           ),
           NeumorphicButton(
             onPressed: () {

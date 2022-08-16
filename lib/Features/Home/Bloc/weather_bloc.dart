@@ -25,5 +25,17 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
         emit(WeatherStateError(e.toString()));
       }
     });
+
+    on<GetSearchedWeatherDataEvent>((event, emit) async {
+      String fullQuery = '&q=${event.toString()}&days=8&aqi=yes&alerts=no';
+      try {
+        emit(WeatherStateLoading());
+        final mData = await repository.fetchWeatherData(fullQuery);
+        Future.delayed(const Duration(milliseconds: 2000));
+        emit(WeatherStateLoaded(mData));
+      } catch (e) {
+        emit(WeatherStateError(e.toString()));
+      }
+    });
   }
 }

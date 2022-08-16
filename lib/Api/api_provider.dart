@@ -23,13 +23,21 @@ class ApiProvider {
     }
   }
 
-  Future<SearchModel> fetchSearchedLocation(String query) async {
+  Future<List<SearchModel>> fetchSearchedLocation(String query) async {
     try {
       Response response =
           await dio.get(Constants.searchUrl + Constants.apiKey + query);
-      log('-------Searched Location Data : $response');
+      List jsondata = response.data;
+      // log('-------Searched Location Data : $jsondata');
+
+      List<SearchModel> searchedData = [];
+      for (var i = 0; i < jsondata.length; i++) {
+        var data = SearchModel.fromJson(jsondata[i]);
+        searchedData.add(data);
+      }
+
       return response.statusCode == 200
-          ? SearchModel.fromJson(response.data)
+          ? searchedData
           : throw Exception('Error Getting Data');
     } catch (e) {
       throw Exception(e.toString());

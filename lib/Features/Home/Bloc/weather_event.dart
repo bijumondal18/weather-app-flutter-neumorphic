@@ -9,3 +9,12 @@ abstract class WeatherEvent extends Equatable {
 }
 
 class GetWeatherDataEvent extends WeatherEvent {}
+
+class GetSearchedWeatherDataEvent extends WeatherEvent {
+  final String query;
+
+  const GetSearchedWeatherDataEvent(this.query);
+
+  @override
+  List<Object?> get props => [query];
+}
