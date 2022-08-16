@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project/Commons/constants.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
 import 'package:starter_project/Utils/app_utils.dart';
 
@@ -29,40 +30,42 @@ class TemparatureList extends StatelessWidget {
                   bottom: AppSizes.kDefaultPadding),
               child: NeumorphicCard(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: AppSizes.kDefaultPadding),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppSizes.kDefaultPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      AppUtils.getTimeFromDateString(
+                          '${state.responseModel.forecast!.forecastday![0].hour![index].time}'),
+                      style: const TextStyle(
+                          color: AppColors.darkGrey,
+                          fontSize: AppSizes.bodyText2,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    Image(
+                      image: NetworkImage(
+                          'http:${state.responseModel.forecast!.forecastday![0].hour![index].condition!.icon}'),
+                      width: 40,
+                      height: 40,
+                    ),
+                    Row(
                       children: [
                         Text(
-                          AppUtils.getTimeFromDateString(
-                              '${state.responseModel.forecast!.forecastday![0].hour![index].time}'),
+                          Constants.selectedTempUnit == '°C'
+                              ? '${state.responseModel.forecast!.forecastday![0].hour![index].tempC}°C'
+                              : '${state.responseModel.forecast!.forecastday![0].hour![index].tempF}°F',
                           style: const TextStyle(
                               color: AppColors.darkGrey,
-                              fontSize: AppSizes.bodyText2,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        Image(
-                          image: NetworkImage(
-                              'http:${state.responseModel.forecast!.forecastday![0].hour![index].condition!.icon}'),
-                          width: 40,
-                          height: 40,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              '${state.responseModel.forecast!.forecastday![0].hour![index].tempC}°C',
-                              style: const TextStyle(
-                                  color: AppColors.darkGrey,
-                                  fontSize: AppSizes.bodyText1,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ],
+                              fontSize: AppSizes.bodyText1,
+                              fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
-                  )),
+                  ],
+                ),
+              )),
             );
           }),
     );

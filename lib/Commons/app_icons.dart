@@ -13,4 +13,5 @@ class AppIcons {
   static const String forecast = '${path}forecast.png';
   static const String city = '${path}city.png';
   static const String settings = '${path}settings.png';
+  static const String arrowUpDown = '${path}arrow-up-down.webp';
 }

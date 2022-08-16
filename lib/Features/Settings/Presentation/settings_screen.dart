@@ -1,7 +1,10 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starter_project/Commons/commons.dart';
+import 'package:starter_project/Commons/constants.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
+import 'package:starter_project/Features/Search/Bloc/searched_location_bloc.dart';
 import 'package:starter_project/Widgets/custom_appbar.dart';
 import 'package:starter_project/Widgets/neumorphic_button.dart';
 import 'package:starter_project/Widgets/neumorphic_card.dart';
@@ -18,6 +21,10 @@ class SettingsScreen extends StatelessWidget {
         state: state,
         title: 'Settings',
         icon: AppIcons.settings,
+        onBackPressed: () {
+          BlocProvider.of<WeatherBloc>(context).add(GetWeatherDataEvent());
+          Navigator.pop(context);
+        },
       ),
       body: const _BuildBody(),
     );
@@ -32,11 +39,20 @@ class _BuildBody extends StatefulWidget {
 }
 
 class _BuildBodyState extends State<_BuildBody> {
-  final List<String> items = [
+  final List<String> tempUnitList = [
     '°C',
     '°F',
   ];
-  var selectedTemperature = '°C';
+
+  final List<String> windSpeedUnitList = [
+    'Kilometers per hour (km/h)',
+    'Miles per hour (mph)',
+  ];
+
+  final List<String> atmosphericPressureUnitList = [
+    'Millibar (mBar)',
+    'Inch of mercury (inHg)',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -67,20 +83,34 @@ class _BuildBodyState extends State<_BuildBody> {
                           color: AppColors.darkGrey),
                     ),
                     trailing: DropdownButton<String>(
-                      alignment: AlignmentDirectional.topStart,
-                      dropdownColor: AppColors.backgroundColor,
-                      elevation: 1,
-                      borderRadius: BorderRadius.circular(AppSizes.cardCornerRadius),
-                        value: selectedTemperature,
+                        underline: Container(),
+                        icon: const Image(
+                          image: AssetImage(AppIcons.arrowUpDown),
+                          width: 16,
+                          height: 16,
+                        ),
+                        alignment: AlignmentDirectional.centerEnd,
+                        dropdownColor: AppColors.backgroundColor,
+                        elevation: 1,
+                        borderRadius:
+                            BorderRadius.circular(AppSizes.cardCornerRadius),
+                        value: Constants.selectedTempUnit,
                         onChanged: (value) {
-                          setState((){
-                            selectedTemperature = value!;
+                          setState(() {
+                            Constants.selectedTempUnit = value!;
                           });
                         },
-                        items: items.map<DropdownMenuItem<String>>(
+                        items: tempUnitList.map<DropdownMenuItem<String>>(
                           (String value) {
                             return DropdownMenuItem(
-                                value: value, child: Text(value));
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(
+                                      fontSize: AppSizes.bodyText1,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.darkGrey),
+                                ));
                           },
                         ).toList()),
                   ),
@@ -88,29 +118,90 @@ class _BuildBodyState extends State<_BuildBody> {
                 const SizedBox(height: AppSizes.kDefaultPadding),
                 NeumorphicButton(
                   onPressed: () {},
-                  child: const ListTile(
-                    title: Text(
+                  child: ListTile(
+                    title: const Text(
                       'Wind Speed Units',
                       style: TextStyle(
                           fontSize: AppSizes.bodyText1,
                           fontWeight: FontWeight.w400,
                           color: AppColors.darkGrey),
                     ),
-                    trailing: Text('Kilometers/Hr (km/h)'),
+                    trailing: DropdownButton<String>(
+                        underline: Container(),
+                        icon: const Image(
+                          image: AssetImage(AppIcons.arrowUpDown),
+                          width: 16,
+                          height: 16,
+                        ),
+                        alignment: AlignmentDirectional.centerEnd,
+                        dropdownColor: AppColors.backgroundColor,
+                        elevation: 1,
+                        borderRadius:
+                            BorderRadius.circular(AppSizes.cardCornerRadius),
+                        value: Constants.selectedWindSpeedUnit,
+                        onChanged: (value) {
+                          setState(() {
+                            Constants.selectedWindSpeedUnit = value!;
+                          });
+                        },
+                        items: windSpeedUnitList.map<DropdownMenuItem<String>>(
+                          (String value) {
+                            return DropdownMenuItem(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(
+                                      fontSize: AppSizes.bodyText1,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.darkGrey),
+                                ));
+                          },
+                        ).toList()),
                   ),
                 ),
                 const SizedBox(height: AppSizes.kDefaultPadding),
                 NeumorphicButton(
                   onPressed: () {},
-                  child: const ListTile(
-                    title: Text(
+                  child: ListTile(
+                    title: const Text(
                       'Atmospheric Pressure Units',
                       style: TextStyle(
                           fontSize: AppSizes.bodyText1,
                           fontWeight: FontWeight.w400,
                           color: AppColors.darkGrey),
                     ),
-                    trailing: Text('Millibar (mBar)'),
+                    trailing: DropdownButton<String>(
+                        underline: Container(),
+                        icon: const Image(
+                          image: AssetImage(AppIcons.arrowUpDown),
+                          width: 16,
+                          height: 16,
+                        ),
+                        alignment: AlignmentDirectional.centerEnd,
+                        dropdownColor: AppColors.backgroundColor,
+                        elevation: 1,
+                        borderRadius:
+                            BorderRadius.circular(AppSizes.cardCornerRadius),
+                        value: Constants.selectedAtmosphericPressureUnit,
+                        onChanged: (value) {
+                          setState(() {
+                            Constants.selectedAtmosphericPressureUnit = value!;
+                          });
+                        },
+                        items: atmosphericPressureUnitList
+                            .map<DropdownMenuItem<String>>(
+                          (String value) {
+                            return DropdownMenuItem(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(
+                                      fontSize: AppSizes.bodyText1,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.darkGrey),
+                                ));
+                          },
+                        ).toList()),
                   ),
                 )
               ],

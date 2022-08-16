@@ -9,8 +9,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final WeatherStateLoaded state;
   final String? title;
   final String? icon;
+  final VoidCallback onBackPressed;
 
-  const CustomAppBar({Key? key, required this.state, this.title, this.icon})
+  const CustomAppBar(
+      {Key? key,
+      required this.state,
+      this.title,
+      this.icon,
+      required this.onBackPressed})
       : super(key: key);
 
   @override
@@ -25,9 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             NeumorphicButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
+              onPressed: onBackPressed,
               child: const Padding(
                 padding: EdgeInsets.all(AppSizes.dimen12),
                 child: Icon(

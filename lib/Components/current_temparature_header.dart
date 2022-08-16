@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project/Commons/constants.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
 import 'package:starter_project/Widgets/neumorphic_card.dart';
 
@@ -25,14 +26,15 @@ class CurrentTemparatureHeader extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   const Text(
-                        'Today',
-                        style:  TextStyle(
+                    const Text('Today',
+                        style: TextStyle(
                             color: AppColors.darkGrey,
                             fontSize: AppSizes.headline3,
                             fontWeight: FontWeight.w500)),
                     Text(
-                        '${state.responseModel.current!.tempC}° ${state.responseModel.current!.condition!.text}',
+                        Constants.selectedTempUnit == '°C'
+                            ? '${state.responseModel.current!.tempC}°C ${state.responseModel.current!.condition!.text}'
+                            : '${state.responseModel.current!.tempF}°F ${state.responseModel.current!.condition!.text}',
                         style: const TextStyle(
                             color: AppColors.darkGrey,
                             fontSize: AppSizes.headline3,

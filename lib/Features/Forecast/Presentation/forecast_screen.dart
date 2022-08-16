@@ -4,6 +4,7 @@ import 'package:starter_project/Utils/app_utils.dart';
 import 'package:starter_project/Widgets/custom_appbar.dart';
 
 import '../../../Commons/commons.dart';
+import '../../../Commons/constants.dart';
 import '../../../Widgets/neumorphic_card.dart';
 
 class ForecastScreen extends StatelessWidget {
@@ -19,6 +20,9 @@ class ForecastScreen extends StatelessWidget {
         title:
             'Next ${state.responseModel.forecast!.forecastday!.length}-days Forecast',
         icon: AppIcons.forecast,
+        onBackPressed: () {
+          Navigator.pop(context);
+        },
       ),
       body: ListView.builder(
           padding: EdgeInsets.zero,
@@ -50,8 +54,9 @@ class ForecastScreen extends StatelessWidget {
                         width: 40,
                         height: 40,
                       ),
-                      Text(
-                          '${state.responseModel.forecast!.forecastday![index].day!.mintempC}°C'),
+                      Text(Constants.selectedTempUnit == '°C'
+                          ? '${state.responseModel.forecast!.forecastday![index].day!.mintempC}°C'
+                          : '${state.responseModel.forecast!.forecastday![index].day!.mintempF}°F'),
                       Container(
                         height: 4,
                         width: 60,
@@ -65,8 +70,9 @@ class ForecastScreen extends StatelessWidget {
                             borderRadius:
                                 BorderRadius.circular(AppSizes.dimen20)),
                       ),
-                      Text(
-                          '${state.responseModel.forecast!.forecastday![index].day!.maxtempC}°C'),
+                      Text(Constants.selectedTempUnit == '°C'
+                          ? '${state.responseModel.forecast!.forecastday![index].day!.maxtempC}°C'
+                          : '${state.responseModel.forecast!.forecastday![index].day!.maxtempF}°F'),
                     ],
                   ),
                 ),

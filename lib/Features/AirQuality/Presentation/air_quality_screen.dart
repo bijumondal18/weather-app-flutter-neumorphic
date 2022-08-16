@@ -44,6 +44,9 @@ class _AirQualityScreenState extends State<AirQualityScreen>
           state: widget.state,
           title: 'Air Quality Index',
           icon: AppIcons.airQuality,
+          onBackPressed: (){
+            Navigator.pop(context);
+          },
         ),
         body: Column(
           children: [

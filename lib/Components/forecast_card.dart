@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:starter_project/Commons/constants.dart';
 import 'package:starter_project/Features/Forecast/Presentation/forecast_screen.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
 import 'package:starter_project/Utils/app_utils.dart';
@@ -52,7 +53,9 @@ class ForecastCard extends StatelessWidget {
                       ),
                       trailing: FittedBox(
                         child: Text(
-                          '${state.responseModel.forecast!.forecastday![index].day!.maxtempC}°C / ${state.responseModel.forecast!.forecastday![index].day!.mintempC}°C',
+                          Constants.selectedTempUnit == '°C'
+                              ? '${state.responseModel.forecast!.forecastday![index].day!.maxtempC}°C / ${state.responseModel.forecast!.forecastday![index].day!.mintempC}°C'
+                              : '${state.responseModel.forecast!.forecastday![index].day!.maxtempF}°F / ${state.responseModel.forecast!.forecastday![index].day!.mintempF}°F',
                           style: const TextStyle(
                               color: AppColors.darkGrey,
                               fontSize: AppSizes.bodyText2,

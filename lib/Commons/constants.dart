@@ -8,4 +8,7 @@ class Constants {
 
   static const searchUrl = 'http://api.weatherapi.com/v1/search.json?key=';
 
+  static String selectedTempUnit = '°C';
+  static String selectedWindSpeedUnit = 'Kilometers per hour (km/h)';
+  static String selectedAtmosphericPressureUnit = 'Millibar (mBar)';
 }
