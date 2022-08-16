@@ -5,6 +5,7 @@ import 'package:starter_project/Commons/theme.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
 import 'package:starter_project/Features/Home/Presentation/home_screen.dart';
 import 'package:starter_project/Features/Home/Repository/weather_repository.dart';
+import 'package:starter_project/Utils/app_preference.dart';
 import 'package:starter_project/Utils/app_utils.dart';
 
 void main() {
@@ -23,9 +24,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final AppPreference preference = AppPreference();
+
     return RepositoryProvider(
       create: (context) => WeatherRepository(),
-      child: BlocProvider(
+      child: BlocProvider (
         create: (context) => WeatherBloc()..add(GetWeatherDataEvent()),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

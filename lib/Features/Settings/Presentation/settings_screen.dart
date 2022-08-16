@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starter_project/Commons/commons.dart';
 import 'package:starter_project/Commons/constants.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
+import 'package:starter_project/Features/PrivacyPolicy/Presentation/privacy_policy_screen.dart';
 import 'package:starter_project/Features/Search/Bloc/searched_location_bloc.dart';
 import 'package:starter_project/Widgets/custom_appbar.dart';
 import 'package:starter_project/Widgets/neumorphic_button.dart';
@@ -26,13 +27,15 @@ class SettingsScreen extends StatelessWidget {
           Navigator.pop(context);
         },
       ),
-      body: const _BuildBody(),
+      body: _BuildBody(state: state),
     );
   }
 }
 
 class _BuildBody extends StatefulWidget {
-  const _BuildBody({Key? key}) : super(key: key);
+  final WeatherStateLoaded state;
+
+  const _BuildBody({Key? key, required this.state}) : super(key: key);
 
   @override
   State<_BuildBody> createState() => _BuildBodyState();
@@ -236,7 +239,13 @@ class _BuildBodyState extends State<_BuildBody> {
                 ),
                 const SizedBox(height: AppSizes.kDefaultPadding),
                 NeumorphicButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) =>
+                    //             PrivacyPolicyScreen(state: widget.state)));
+                  },
                   child: const ListTile(
                     title: Text(
                       'Privacy Policy',
