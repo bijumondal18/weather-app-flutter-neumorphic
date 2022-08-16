@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
       if (await preference.getLocation() != null) {
         loc = await preference.getLocation();
-        print('loc - $loc');
+        log('loc - $loc');
       } else {
         loc = locationQuery;
       }
@@ -45,7 +47,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
         emit(WeatherStateLoading());
         final mData = await repository.fetchWeatherData(fullQuery);
         preference.setLocation(mData.location!.name!);
-        print('-----preference - ${await preference.getLocation()}');
+        log('-----preference - ${await preference.getLocation()}');
         //Future.delayed(const Duration(milliseconds: 2000));
         emit(WeatherStateLoaded(mData));
       } catch (e) {

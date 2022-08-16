@@ -6,9 +6,9 @@ class AppPreference {
     prefs.setString('location_name', locationName);
   }
 
-  Future<String?> getLocation() async {
+  Future<String> getLocation() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String locationName = prefs.getString('location_name')!;
-    return locationName;
+    final String? locationName = prefs.getString('location_name');
+    return locationName.toString();
   }
 }

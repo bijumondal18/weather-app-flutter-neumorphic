@@ -59,243 +59,243 @@ class _BuildBodyState extends State<_BuildBody> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Units',
-              style: TextStyle(
-                  fontSize: AppSizes.bodyText1,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.darkGrey),
-            ),
-            const SizedBox(height: AppSizes.kDefaultPadding),
-            Column(
-              children: [
-                NeumorphicButton(
-                  onPressed: () {},
-                  child: ListTile(
-                    title: const Text(
-                      'Temperature Units',
-                      style: TextStyle(
-                          fontSize: AppSizes.bodyText1,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.darkGrey),
-                    ),
-                    trailing: DropdownButton<String>(
-                        underline: Container(),
-                        icon: const Image(
-                          image: AssetImage(AppIcons.arrowUpDown),
-                          width: 16,
-                          height: 16,
-                        ),
-                        alignment: AlignmentDirectional.centerEnd,
-                        dropdownColor: AppColors.backgroundColor,
-                        elevation: 1,
-                        borderRadius:
-                            BorderRadius.circular(AppSizes.cardCornerRadius),
-                        value: Constants.selectedTempUnit,
-                        onChanged: (value) {
-                          setState(() {
-                            Constants.selectedTempUnit = value!;
-                          });
+    return Padding(
+      padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Units',
+                style: TextStyle(
+                    fontSize: AppSizes.bodyText1,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.darkGrey),
+              ),
+              const SizedBox(height: AppSizes.kDefaultPadding),
+              NeumorphicButton(
+                onPressed: () {},
+                child: ListTile(
+                  title: const Text(
+                    'Temperature Units',
+                    style: TextStyle(
+                        fontSize: AppSizes.bodyText1,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.darkGrey),
+                  ),
+                  trailing: DropdownButton<String>(
+                      underline: Container(),
+                      icon: const Image(
+                        image: AssetImage(AppIcons.arrowUpDown),
+                        width: 16,
+                        height: 16,
+                      ),
+                      alignment: AlignmentDirectional.centerEnd,
+                      dropdownColor: AppColors.backgroundColor,
+                      elevation: 1,
+                      borderRadius:
+                          BorderRadius.circular(AppSizes.cardCornerRadius),
+                      value: Constants.selectedTempUnit,
+                      onChanged: (value) {
+                        setState(() {
+                          Constants.selectedTempUnit = value!;
+                        });
+                      },
+                      items: tempUnitList.map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: const TextStyle(
+                                    fontSize: AppSizes.bodyText1,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.darkGrey),
+                              ));
                         },
-                        items: tempUnitList.map<DropdownMenuItem<String>>(
-                          (String value) {
-                            return DropdownMenuItem(
-                                value: value,
-                                child: Text(
-                                  value,
-                                  style: const TextStyle(
-                                      fontSize: AppSizes.bodyText1,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.darkGrey),
-                                ));
-                          },
-                        ).toList()),
-                  ),
+                      ).toList()),
                 ),
-                const SizedBox(height: AppSizes.kDefaultPadding),
-                NeumorphicButton(
-                  onPressed: () {},
-                  child: ListTile(
-                    title: const Text(
-                      'Wind Speed Units',
-                      style: TextStyle(
-                          fontSize: AppSizes.bodyText1,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.darkGrey),
-                    ),
-                    trailing: DropdownButton<String>(
-                        underline: Container(),
-                        icon: const Image(
-                          image: AssetImage(AppIcons.arrowUpDown),
-                          width: 16,
-                          height: 16,
-                        ),
-                        alignment: AlignmentDirectional.centerEnd,
-                        dropdownColor: AppColors.backgroundColor,
-                        elevation: 1,
-                        borderRadius:
-                            BorderRadius.circular(AppSizes.cardCornerRadius),
-                        value: Constants.selectedWindSpeedUnit,
-                        onChanged: (value) {
-                          setState(() {
-                            Constants.selectedWindSpeedUnit = value!;
-                          });
+              ),
+              const SizedBox(height: AppSizes.kDefaultPadding),
+              NeumorphicButton(
+                onPressed: () {},
+                child: ListTile(
+                  title: const Text(
+                    'Wind Speed Units',
+                    style: TextStyle(
+                        fontSize: AppSizes.bodyText1,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.darkGrey),
+                  ),
+                  trailing: DropdownButton<String>(
+                      underline: Container(),
+                      icon: const Image(
+                        image: AssetImage(AppIcons.arrowUpDown),
+                        width: 16,
+                        height: 16,
+                      ),
+                      alignment: AlignmentDirectional.centerEnd,
+                      dropdownColor: AppColors.backgroundColor,
+                      elevation: 1,
+                      borderRadius:
+                          BorderRadius.circular(AppSizes.cardCornerRadius),
+                      value: Constants.selectedWindSpeedUnit,
+                      onChanged: (value) {
+                        setState(() {
+                          Constants.selectedWindSpeedUnit = value!;
+                        });
+                      },
+                      items: windSpeedUnitList.map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: const TextStyle(
+                                    fontSize: AppSizes.bodyText1,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.darkGrey),
+                              ));
                         },
-                        items: windSpeedUnitList.map<DropdownMenuItem<String>>(
-                          (String value) {
-                            return DropdownMenuItem(
-                                value: value,
-                                child: Text(
-                                  value,
-                                  style: const TextStyle(
-                                      fontSize: AppSizes.bodyText1,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.darkGrey),
-                                ));
-                          },
-                        ).toList()),
-                  ),
+                      ).toList()),
                 ),
-                const SizedBox(height: AppSizes.kDefaultPadding),
-                NeumorphicButton(
-                  onPressed: () {},
-                  child: ListTile(
-                    title: const Text(
-                      'Atmospheric Pressure Units',
-                      style: TextStyle(
-                          fontSize: AppSizes.bodyText1,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.darkGrey),
-                    ),
-                    trailing: DropdownButton<String>(
-                        underline: Container(),
-                        icon: const Image(
-                          image: AssetImage(AppIcons.arrowUpDown),
-                          width: 16,
-                          height: 16,
-                        ),
-                        alignment: AlignmentDirectional.centerEnd,
-                        dropdownColor: AppColors.backgroundColor,
-                        elevation: 1,
-                        borderRadius:
-                            BorderRadius.circular(AppSizes.cardCornerRadius),
-                        value: Constants.selectedAtmosphericPressureUnit,
-                        onChanged: (value) {
-                          setState(() {
-                            Constants.selectedAtmosphericPressureUnit = value!;
-                          });
+              ),
+              const SizedBox(height: AppSizes.kDefaultPadding),
+              NeumorphicButton(
+                onPressed: () {},
+                child: ListTile(
+                  title: const Text(
+                    'Atmospheric Pressure Units',
+                    style: TextStyle(
+                        fontSize: AppSizes.bodyText1,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.darkGrey),
+                  ),
+                  trailing: DropdownButton<String>(
+                      underline: Container(),
+                      icon: const Image(
+                        image: AssetImage(AppIcons.arrowUpDown),
+                        width: 16,
+                        height: 16,
+                      ),
+                      alignment: AlignmentDirectional.centerEnd,
+                      dropdownColor: AppColors.backgroundColor,
+                      elevation: 1,
+                      borderRadius:
+                          BorderRadius.circular(AppSizes.cardCornerRadius),
+                      value: Constants.selectedAtmosphericPressureUnit,
+                      onChanged: (value) {
+                        setState(() {
+                          Constants.selectedAtmosphericPressureUnit = value!;
+                        });
+                      },
+                      items: atmosphericPressureUnitList
+                          .map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: const TextStyle(
+                                    fontSize: AppSizes.bodyText1,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.darkGrey),
+                              ));
                         },
-                        items: atmosphericPressureUnitList
-                            .map<DropdownMenuItem<String>>(
-                          (String value) {
-                            return DropdownMenuItem(
-                                value: value,
-                                child: Text(
-                                  value,
-                                  style: const TextStyle(
-                                      fontSize: AppSizes.bodyText1,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.darkGrey),
-                                ));
-                          },
-                        ).toList()),
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(height: AppSizes.kDefaultPadding),
-            const Text(
-              'About Weather',
-              style: TextStyle(
-                  fontSize: AppSizes.bodyText1,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.darkGrey),
-            ),
-            const SizedBox(height: AppSizes.kDefaultPadding),
-            Column(
-              children: [
-                NeumorphicButton(
-                  onPressed: () {},
-                  child: const ListTile(
-                    title: Text(
-                      'Feedback',
-                      style: TextStyle(
-                          fontSize: AppSizes.bodyText1,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.darkGrey),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: AppColors.grey,
-                      size: AppSizes.appBarIconSize,
-                    ),
-                  ),
+                      ).toList()),
                 ),
-                const SizedBox(height: AppSizes.kDefaultPadding),
-                NeumorphicButton(
-                  onPressed: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) =>
-                    //             PrivacyPolicyScreen(state: widget.state)));
-                  },
-                  child: const ListTile(
-                    title: Text(
-                      'Privacy Policy',
-                      style: TextStyle(
-                          fontSize: AppSizes.bodyText1,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.darkGrey),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: AppColors.grey,
-                      size: AppSizes.appBarIconSize,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: AppSizes.kDefaultPadding),
-                NeumorphicButton(
-                  onPressed: () {},
-                  child: const ListTile(
-                    title: Text(
-                      'About',
-                      style: TextStyle(
-                          fontSize: AppSizes.bodyText1,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.darkGrey),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: AppColors.grey,
-                      size: AppSizes.appBarIconSize,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: AppSizes.dimen30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  'App Version : 1.0.3',
-                  style: TextStyle(
-                      fontSize: AppSizes.bodyText2,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.grey),
-                ),
-              ],
-            )
-          ],
-        ),
+              ),
+            ],
+          ),
+          Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                'App Version : 1.0.3',
+                style: TextStyle(
+                    fontSize: AppSizes.bodyText2,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.grey),
+              ),
+            ],
+          )
+
+          // const SizedBox(height: AppSizes.kDefaultPadding),
+          // const Text(
+          //   'About Weather',
+          //   style: TextStyle(
+          //       fontSize: AppSizes.bodyText1,
+          //       fontWeight: FontWeight.w500,
+          //       color: AppColors.darkGrey),
+          // ),
+          // const SizedBox(height: AppSizes.kDefaultPadding),
+          // Column(
+          //   children: [
+          //     NeumorphicButton(
+          //       onPressed: () {},
+          //       child: const ListTile(
+          //         title: Text(
+          //           'Feedback',
+          //           style: TextStyle(
+          //               fontSize: AppSizes.bodyText1,
+          //               fontWeight: FontWeight.w400,
+          //               color: AppColors.darkGrey),
+          //         ),
+          //         trailing: Icon(
+          //           Icons.arrow_forward_ios_rounded,
+          //           color: AppColors.grey,
+          //           size: AppSizes.appBarIconSize,
+          //         ),
+          //       ),
+          //     ),
+          //     const SizedBox(height: AppSizes.kDefaultPadding),
+          //     NeumorphicButton(
+          //       onPressed: () {
+          //         Navigator.push(
+          //             context,
+          //             MaterialPageRoute(
+          //                 builder: (context) =>
+          //                     PrivacyPolicyScreen(state: widget.state)));
+          //       },
+          //       child: const ListTile(
+          //         title: Text(
+          //           'Privacy Policy',
+          //           style: TextStyle(
+          //               fontSize: AppSizes.bodyText1,
+          //               fontWeight: FontWeight.w400,
+          //               color: AppColors.darkGrey),
+          //         ),
+          //         trailing: Icon(
+          //           Icons.arrow_forward_ios_rounded,
+          //           color: AppColors.grey,
+          //           size: AppSizes.appBarIconSize,
+          //         ),
+          //       ),
+          //     ),
+          //     const SizedBox(height: AppSizes.kDefaultPadding),
+          //     NeumorphicButton(
+          //       onPressed: () {},
+          //       child: const ListTile(
+          //         title: Text(
+          //           'About',
+          //           style: TextStyle(
+          //               fontSize: AppSizes.bodyText1,
+          //               fontWeight: FontWeight.w400,
+          //               color: AppColors.darkGrey),
+          //         ),
+          //         trailing: Icon(
+          //           Icons.arrow_forward_ios_rounded,
+          //           color: AppColors.grey,
+          //           size: AppSizes.appBarIconSize,
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
+        ],
       ),
     );
   }
