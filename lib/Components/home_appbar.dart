@@ -22,6 +22,7 @@ class HomeAppBar extends StatelessWidget {
       color: AppColors.backgroundColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           NeumorphicButton(
             onPressed: () {
@@ -40,7 +41,8 @@ class HomeAppBar extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal:AppSizes.kDefaultPadding),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppSizes.kDefaultPadding),
               child: Column(
                 children: [
                   Text('${state.responseModel.location!.name}',
@@ -50,7 +52,9 @@ class HomeAppBar extends StatelessWidget {
                           fontSize: AppSizes.headline6,
                           fontWeight: FontWeight.w500)),
                   Text(
-                      '${state.responseModel.location!.region}, ${state.responseModel.location!.country}',
+                      state.responseModel.location!.region != ''
+                          ? '${state.responseModel.location!.region}, ${state.responseModel.location!.country}'
+                          : '${state.responseModel.location!.country}',
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

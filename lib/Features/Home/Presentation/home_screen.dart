@@ -67,6 +67,7 @@ class _BuildBodyState extends State<_BuildBody> {
                 child: RefreshIndicator(
                   key: refreshKey,
                   onRefresh: () async {
+                    await Future.delayed(const Duration(milliseconds: 2000));
                     weatherBloc.add(GetSearchedWeatherDataEvent(
                         state.responseModel.location!.name.toString()));
                   },

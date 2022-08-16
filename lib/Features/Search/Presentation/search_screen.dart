@@ -77,48 +77,63 @@ class _SearchScreenState extends State<SearchScreen> {
                 if (state is SearchedLocationStateLoading) {
                   return const Center(child: Text('Loading...'));
                 }
+                if (state is SearchedLocationStateError) {
+                  return const Center(child: Text('No Results'));
+                }
                 if (state is SearchedLocationStateLoaded) {
                   return Expanded(
-                    child: ListView.builder(
-                      itemCount: state.searchModel.length,
-                      physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (ctx, index) {
-                        return ListTile(
-                          title: Text(
-                            '${state.searchModel[index].name}',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.darkGrey,
-                                fontSize: AppSizes.bodyText1),
-                          ),
-                          subtitle: Text(
-                            '${state.searchModel[index].region}, ${state.searchModel[index].country}',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.darkGrey,
-                                fontSize: AppSizes.bodyText2),
-                          ),
-                          trailing: NeumorphicButton(
-                              onPressed: () {
-                                BlocProvider.of<WeatherBloc>(context).add(
-                                    GetSearchedWeatherDataEvent(state
-                                        .searchModel[index].name
-                                        .toString()));
-                                Navigator.pop(context);
-                              },
-                              child: const Padding(
-                                padding:
-                                    EdgeInsets.all(AppSizes.cardCornerRadius),
-                                child: Icon(
-                                  EvaIcons.plus,
-                                  color: AppColors.darkGrey,
-                                  size: AppSizes.appBarIconSize,
+                    child: state.searchModel.isNotEmpty
+                        ? ListView.separated(
+                            itemCount: state.searchModel.length,
+                            physics: const BouncingScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (ctx, index) {
+                              return ListTile(
+                                title: Text(
+                                  '${state.searchModel[index].name}',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.darkGrey,
+                                      fontSize: AppSizes.bodyText1),
                                 ),
-                              )),
-                        );
-                      },
-                    ),
+                                subtitle: Text(
+                                  state.searchModel[index].region != ''
+                                      ? '${state.searchModel[index].region}, ${state.searchModel[index].country}'
+                                      : '${state.searchModel[index].country}',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.darkGrey,
+                                      fontSize: AppSizes.bodyText2),
+                                ),
+                                trailing: NeumorphicButton(
+                                    onPressed: () {
+                                      BlocProvider.of<WeatherBloc>(context).add(
+                                          GetSearchedWeatherDataEvent(state
+                                              .searchModel[index].name
+                                              .toString()));
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(
+                                          AppSizes.cardCornerRadius),
+                                      child: Icon(
+                                        EvaIcons.plus,
+                                        color: AppColors.darkGrey,
+                                        size: AppSizes.appBarIconSize,
+                                      ),
+                                    )),
+                              );
+                            },
+                            separatorBuilder:
+                                (BuildContext context, int index) {
+                              return const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: AppSizes.kDefaultPadding),
+                                child: Divider(height: 1),
+                              );
+                            },
+                          )
+                        : const Center(child: Text('No Results Found')),
                   );
                 }
                 return const Expanded(child: Center(child: Text('No Results')));

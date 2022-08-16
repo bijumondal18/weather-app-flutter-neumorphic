@@ -105,7 +105,7 @@ class AirQualityCard extends StatelessWidget {
                                   fontWeight: FontWeight.w400),
                             ),
                             Text(
-                              'Ver High',
+                              'Very High',
                               style: TextStyle(
                                   color: AppColors.darkGrey,
                                   fontSize: AppSizes.bodyText2,
