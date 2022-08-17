@@ -1,4 +1,4 @@
-package com.example.starter_project
+package com.weatherapp.neumorphic_weather
 
 import io.flutter.embedding.android.FlutterActivity
 

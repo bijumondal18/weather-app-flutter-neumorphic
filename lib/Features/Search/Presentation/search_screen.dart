@@ -5,6 +5,7 @@ import 'package:starter_project/Commons/commons.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
 import 'package:starter_project/Features/Search/Bloc/searched_location_bloc.dart';
 import 'package:starter_project/Features/Search/Model/search_model.dart';
+import 'package:starter_project/Utils/app_utils.dart';
 import 'package:starter_project/Widgets/neumorphic_button.dart';
 import 'package:starter_project/Widgets/neumorphic_card.dart';
 import 'package:starter_project/Widgets/neumorphic_text_field.dart';
@@ -40,6 +41,7 @@ class _SearchScreenState extends State<SearchScreen> {
         child: SafeArea(
           bottom: false,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 height: 80,
@@ -68,6 +70,36 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   ],
                 ),
+              ),
+              ListTile(
+                onTap: () {
+                  var loc = AppUtils.getCurrentLocation();
+                  BlocProvider.of<WeatherBloc>(context)
+                      .add(GetSearchedWeatherDataEvent(loc.toString()));
+                  Navigator.pop(context);
+                },
+                title: const Text(
+                  'Current Location',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.blue,
+                      fontSize: AppSizes.bodyText1),
+                ),
+                trailing: NeumorphicButton(
+                    onPressed: () {
+                      var loc = AppUtils.getCurrentLocation();
+                      BlocProvider.of<WeatherBloc>(context)
+                          .add(GetSearchedWeatherDataEvent(loc.toString()));
+                      Navigator.pop(context);
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(AppSizes.cardCornerRadius),
+                      child: Icon(
+                        EvaIcons.navigation2,
+                        color: AppColors.blue,
+                        size: AppSizes.appBarIconSize,
+                      ),
+                    )),
               ),
               BlocConsumer<SearchedLocationBloc, SearchedLocationState>(
                   listener: (context, state) {

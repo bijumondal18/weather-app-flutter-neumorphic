@@ -1,14 +1,10 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starter_project/Commons/commons.dart';
 import 'package:starter_project/Commons/constants.dart';
 import 'package:starter_project/Features/Home/Bloc/weather_bloc.dart';
-import 'package:starter_project/Features/PrivacyPolicy/Presentation/privacy_policy_screen.dart';
-import 'package:starter_project/Features/Search/Bloc/searched_location_bloc.dart';
 import 'package:starter_project/Widgets/custom_appbar.dart';
 import 'package:starter_project/Widgets/neumorphic_button.dart';
-import 'package:starter_project/Widgets/neumorphic_card.dart';
 
 class SettingsScreen extends StatelessWidget {
   final WeatherStateLoaded state;
@@ -209,6 +205,16 @@ class _BuildBodyState extends State<_BuildBody> {
               ),
             ],
           ),
+          // Spacer(),
+          // NeumorphicCard(
+          //     child: Padding(
+          //       padding: const EdgeInsets.all(16),
+          //       child: Image(
+          //   image: AssetImage(AppImages.appLogo),
+          //   width: 100,
+          //   height: 100,
+          // ),
+          //     )),
           Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

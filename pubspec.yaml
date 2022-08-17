@@ -1,5 +1,5 @@
 name: starter_project
-description: A new Flutter project.
+description: Neumorphic Weather App
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -38,12 +38,14 @@ dependencies:
   geolocator: ^9.0.1
   shared_preferences: ^2.0.15
   webview_flutter: ^3.0.4
+  change_app_package_name: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_native_splash: ^2.2.7
+  flutter_launcher_icons: ^0.10.0
   flutter_lints: ^2.0.0
 
 flutter_native_splash:
@@ -55,10 +57,24 @@ flutter_native_splash:
   fullscreen: false
   android12: false
 
-  color: "#989696"
+  color: "#ffffff"
   #background_image: "lib/Resources/Images/app-logo.png"
   image: "lib/Resources/Images/app-logo.png"
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "lib/Resources/Images/app-launcher.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "lib/Resources/Images/app-launcher.png"
+    background_color: "#FFFFFF"
+    theme_color: "#989696"
+  windows:
+    generate: true
+    image_path: "lib/Resources/Images/app-launcher.png"
+    icon_size: 48 # min:48, max:256, default: 48
 
 
 flutter:
