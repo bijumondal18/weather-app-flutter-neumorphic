@@ -13,17 +13,22 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        state: state,
-        title: 'Settings',
-        icon: AppIcons.settings,
-        onBackPressed: () {
-          BlocProvider.of<WeatherBloc>(context).add(GetWeatherDataEvent());
-          Navigator.pop(context);
-        },
+    return WillPopScope(
+      onWillPop: () async{
+        return false;
+      },
+      child: Scaffold(
+        appBar: CustomAppBar(
+          state: state,
+          title: 'Settings',
+          icon: AppIcons.settings,
+          onBackPressed: () {
+            BlocProvider.of<WeatherBloc>(context).add(GetWeatherDataEvent());
+            Navigator.pop(context);
+          },
+        ),
+        body: _BuildBody(state: state),
       ),
-      body: _BuildBody(state: state),
     );
   }
 }
